@@ -1,21 +1,15 @@
 # Project 3: Around The U.S.
 
 **My Third Project**
-Intro
+[link to my project] (https://github.com/Jazzmine-Flora/se_project_aroundtheus.git)
 
-- Figma
-- Images
+**Things that i've learned**
 
-**Intro**
+In this project i have learned how elements are displayed correctly on popular screen sizes.
+I also learned grid functions and its properties and how flexbox and grid can be applied together where needed.
+However, i would still like to improve my understanding in how to use these and media screen properties.
 
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.
+I am excited to use everything i learned in real life projects.
+Even though its hard to understand sometimes and frustrating, I still find it interesting at the end of the projects how things comes out.
 
-**Figma**
-
-- [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
-
-**Images**
-
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
-
-Good luck and have fun!
+I might have few Errors but i am willing to correct them after review.
