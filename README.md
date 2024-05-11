@@ -1,7 +1,8 @@
 # Project 3: Around The U.S.
 
 **My Third Project**
-[link to my project] (https://github.com/Jazzmine-Flora/se_project_aroundtheus.git)
+[link to my project]
+(https://jazzmine-flora.github.io/se_project_aroundtheus)
 
 **Things that i've learned**
 
