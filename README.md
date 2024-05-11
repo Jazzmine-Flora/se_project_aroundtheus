@@ -4,6 +4,9 @@
 [link to my project]
 (https://jazzmine-flora.github.io/se_project_aroundtheus)
 
+**Project Video**
+https://drive.google.com/file/d/1vmvv0eIZ3pAmqo6S7lcA9BkgkINTv4aa/view?usp=drive_link
+
 **Things that i've learned**
 
 In this project i have learned how elements are displayed correctly on popular screen sizes.
