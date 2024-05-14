@@ -1,9 +1,12 @@
 .header {
   margin-top: 45px;
   min-height: 74px;
-  max-width: 880px;
-
+  width: 100%;
   border-bottom: 1px solid rgb(84 84 84 / 0.7);
+}
+
+.header__image {
+  margin: 0;
 }
 
 @media screen and (max-width: 480px) {
