@@ -5,7 +5,7 @@
 (https://jazzmine-flora.github.io/se_project_aroundtheus)
 
 **Project Video**
-https://drive.google.com/file/d/1vmvv0eIZ3pAmqo6S7lcA9BkgkINTv4aa/view?usp=drive_link
+https://drive.google.com/file/d/1d_zQt1Uf6p3ZXmGjofrONyNQCoVUExSB/view?usp=sharing
 
 **Things that i've learned**
 
