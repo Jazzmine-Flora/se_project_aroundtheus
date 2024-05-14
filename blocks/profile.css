@@ -48,7 +48,7 @@
   line-height: 48px;
   grid-area: title;
   margin: 0;
-  /*text-overflow: ellipsis;*/
+  text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   max-width: 373px;
@@ -97,7 +97,6 @@
     width: 100%;
     text-align: center;
     font-size: 14px;
-    font-weight: 400;
     line-height: 16.94px;
     text-align: center;
     margin-bottom: 36px;
@@ -116,18 +115,14 @@
     height: 18px;
     margin-top: auto;
     margin-left: 10px;
-    border: 1px 0px 0px 0px;
   }
 
   .profile__title {
     max-width: 196px;
-    font-family: Inter;
     font-size: 22px;
-    font-weight: 500;
     line-height: 26.63px;
     text-align: center;
     margin-top: 30px;
-    text-overflow: ellipsis;
   }
 
   .profile__image {

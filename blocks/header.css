@@ -19,7 +19,7 @@
   .header {
     margin-top: 28px;
     margin-bottom: 42px;
-    width: 100%;
+    max-width: 100%;
     min-height: 56px;
     margin-left: 0;
   }
