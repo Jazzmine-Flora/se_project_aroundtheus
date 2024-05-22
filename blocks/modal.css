@@ -28,6 +28,7 @@
   flex-direction: column;*/
   display: grid;
   grid-gap: 29.74px;
+  margin-bottom: 48px;
 }
 
 .form__input {
