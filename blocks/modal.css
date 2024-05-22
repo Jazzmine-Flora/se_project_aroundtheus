@@ -31,7 +31,7 @@
   margin-bottom: 48px;
 }
 
-.form__input {
+.modal__form-input {
   min-height: 27.26px;
   border: 1px solid rgba(0, 0, 0, 1);
   font-family: Inter;
@@ -81,7 +81,7 @@
   background-color: black;
 }
 
-.button__text {
+.modal__button-text {
   font-family: "Inter";
   font-size: 18px;
   font-weight: 400;
