@@ -88,6 +88,7 @@
   line-height: 21.78px;
   text-align: center;
   width: 100%;
+  margin: auto;
 }
 
 .modal__close {
