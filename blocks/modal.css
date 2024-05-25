@@ -11,6 +11,10 @@
   visibility: hidden;
 }
 
+.modal_opened {
+  visibility: visible;
+}
+
 .modal__heading {
   width: 330px;
   height: 23px;
