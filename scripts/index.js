@@ -51,9 +51,11 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__description");
-  const cardButtonEl = cardElement.querySelector(".card__button-like");
 
   cardTitleEl.textContent = cardData.name;
+  cardImageEl.src =
+    "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg";
+  cardImageEl.alt = "yosimite image";
   return cardElement;
 }
 /*event handlers*/
