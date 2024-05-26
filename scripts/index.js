@@ -53,9 +53,8 @@ function getCardElement(cardData) {
   const cardTitleEl = cardElement.querySelector(".card__description");
 
   cardTitleEl.textContent = cardData.name;
-  cardImageEl.src =
-    "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg";
-  cardImageEl.alt = "yosimite image";
+  cardImageEl.src = cardData.link;
+  cardImageEl.alt = cardData.name;
   return cardElement;
 }
 /*event handlers*/
