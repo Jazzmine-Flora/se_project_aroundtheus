@@ -35,6 +35,6 @@ profileEditButton.addEventListener("click", () => {
   profileEditModal.classList.add("modal_opened");
 });
 
-profileCloseButton.addEventListener("click", () => {
-  profileCloseButton.classList.remove("modal_opened");
+profileEditButton.addEventListener("click", () => {
+  profileCloseButton.classList.remove("modal");
 });
