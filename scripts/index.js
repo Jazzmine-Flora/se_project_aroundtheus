@@ -50,7 +50,7 @@ function closePopup() {
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
-  const cardTitleEl = cardElement.querySelector(".card__description");
+  const cardTitleEl = cardElement.querySelector(".card__text");
 
   cardTitleEl.textContent = cardData.name;
   cardImageEl.src = cardData.link;
@@ -81,5 +81,5 @@ profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
-  cardListEl.prepend(cardElement);
+  cardListEl.append(cardElement);
 });
