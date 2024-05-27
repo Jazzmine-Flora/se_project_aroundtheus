@@ -149,12 +149,15 @@
     line-height: 21.78px;
     width: 238px;
     height: 22px;
+    padding: 25px 22px 0 22px;
+    margin-bottom: 75px;
   }
 
   .modal__button {
     width: 100%;
     height: 46px;
     border-radius: 2px;
+    padding: 0;
   }
 
   .modal__button-text {
@@ -166,5 +169,12 @@
     line-height: 16.94px;
     text-align: center;
     margin: auto;
+  }
+
+  .modal__form {
+    max-width: 238px;
+    padding: 0 22px 25px;
+    margin: 0;
+    grid-gap: 30px;
   }
 }
