@@ -34,14 +34,14 @@ const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 
 /*new code p5*/
-const addCardButton = document.querySelector("profile__add-button");
+const profileAddButton = document.querySelector("profile__add-button");
 const profileAddModal = document.querySelector("#profile-add-modal");
-const profileCrossButton = profileAddModal.querySelector(".modal__close");
+/*const profileCrossButton = profileAddModal.querySelector(".modal__close");
 const newPlaceTitle = document.querySelector(".profile__title");
 const profileURL = document.querySelector(".profile__URL");
 const profileInput = document.querySelector("modal__form-input_type_title");
 const profileUrlInput = document.querySelector("modal__form-input_type_url");
-const profileAddForm = profileAddModal.querySelector(".modal__form");
+const profileAddForm = profileAddModal.querySelector(".modal__form");*/
 /*----*/
 
 const profileTitleInput = document.querySelector("#profile-title-input");
@@ -59,8 +59,8 @@ function closePopup() {
   profileEditModal.classList.remove("modal_opened");
 }
 /*new code p5*/
-function closePopup() {
- profileAddModal.classList.remove("modal_opened");
+/*function closePopup() {
+  profileAddModal.classList.remove("modal_opened");
 }
 /*---*/
 
@@ -95,12 +95,10 @@ profileCloseButton.addEventListener("click", closePopup);
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 /*new code P5*/
-profileAddForm.addEventListener("submit", handleProfileEditSubmit)
-profileCrossButton.addEventListener("click", closePopup);
-addCardButton.addEventListener("click" () => {
-profileTitleInput.value = profileTitle.textContent;
-profileDescriptionInput.value = profileDescription.textContent;
-profileAddModal.classList.add("modal_opened");
+/*profileAddForm.addEventListener("submit", handleProfileEditSubmit)
+profileCrossButton.addEventListener("click", closePopup);*/
+profileAddButton.addEventListener("click", () => {
+  profileAddModal.classList.add("modal_opened");
 });
 /*----*/
 
