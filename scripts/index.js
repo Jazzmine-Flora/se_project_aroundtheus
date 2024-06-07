@@ -30,11 +30,11 @@ console.log(initialCards);
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#profile-add-modal");
-const previewImageModal = document.querySelector(".preview_image_modal");
+const previewImageModal = document.querySelector("#preview_image_modal");
 const previewImage = document.querySelector("#preview-image");
 const previewCloseButton = document.querySelector("#preview-close-button");
 const previewImageDescription = document.querySelector(
-  ".previewModalDescription"
+  ".preview_modal_description"
 );
 
 const profileModalCloseButton = profileEditModal.querySelector(".modal__close");

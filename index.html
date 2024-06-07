@@ -93,7 +93,7 @@
       </div>
     </div>
 
-    <div class="preview_image_modal">
+    <!-- <div class="preview_image_modal">
       <div class="modal_container_preview">
         <button class="modal__close" id="preview-close-button"></button>
         <img class="modal__image" id="preview-image" src="" alt="Preview" />
@@ -102,7 +102,7 @@
           id="preview-image-description"
         ></div>
       </div>
-    </div>
+    </div> -->
 
     <template id="card-template">
       <li class="card">
@@ -116,6 +116,15 @@
         </div>
       </li>
     </template>
+
+    <div class="modal" id="preview_image_modal">
+      <button class="modal__close" id="preview-close-button"></button>
+      <div class="modal_container_preview">
+        <img class="modal__image" id="preview-image" src="" alt="Preview" />
+        <h3 class="preview_modal_description"></h3>
+      </div>
+    </div>
+
     <script src="./scripts/index.js"></script>
   </body>
 </html>
