@@ -34,25 +34,20 @@ const profileModalCloseButton = profileEditModal.querySelector(".modal__close");
 const addCardModalCloseButton = addCardModal.querySelector(".modal__close");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
-
 /*new code p5*/
 const addNewCardButton = document.querySelector(".profile__add-button");
-
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const profileAddForm = addCardModal.querySelector(".modal__form");
-
 const cardTitleInput = profileAddForm.querySelector(
   ".modal__form-input_type_title"
 );
 const cardUrlInput = profileAddForm.querySelector(
   ".modal__form-input_type_url"
 );
-
 const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
@@ -123,3 +118,10 @@ addCardModalCloseButton.addEventListener("click", () =>
 /*----*/
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+
+const likeButtons = document.querySelectorAll(".card__button-like");
+likeButtons.forEach((likeButton) => {
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle(".card__button-like_active");
+  });
+});

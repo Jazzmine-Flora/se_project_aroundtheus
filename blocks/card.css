@@ -42,7 +42,7 @@
 }
 
 .card__button-like {
-  background: transparent url(../images/like\ button\ inactive.svg) center
+  background: transparent url("../images/like\ button\ inactive.svg") center
     no-repeat;
   display: flex;
   width: 21px;
@@ -56,4 +56,8 @@
 .card__button-like:hover {
   opacity: 0.5;
   transition: 0.5s ease-in;
+}
+
+.card__button-like_active {
+  background: url("../images/activelike.svg");
 }
