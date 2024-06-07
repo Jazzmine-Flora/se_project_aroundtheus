@@ -9,11 +9,13 @@
   display: flex;
   padding: 0 19px;
   visibility: hidden;
+  transition: visibility 0s 0.6s, opacity 0.6s;
 }
 
 .modal__opened {
   visibility: visible;
-  /*display: block;*/
+  opacity: 1;
+  transition: visibility 0s, opacity 0.6s;
 }
 
 .modal__heading {
@@ -149,9 +151,12 @@
 }
 
 .modal__image {
-  max-width: 433px;
-  height: 540px;
+  /* max-width: 433px;
+  height: 540px; */
   display: flex;
+  margin: auto;
+  max-width: 75vw;
+  max-height: 75vh;
 }
 
 .preview_modal_description {
