@@ -30,6 +30,8 @@
   height: 282px;
   /*border-radius: 10px 10px 0 0;*/
   object-fit: cover;
+  z-index: 1;
+  position: relative;
 }
 
 .card__description {
@@ -64,4 +66,14 @@
 
 .card__delete-button {
   background: url("../images/Trash.svg");
+  width: 18px;
+  height: 19.3px;
+  color: white;
+  border: none;
+  top: 18px;
+  right: 15px;
+  z-index: 2;
+  position: absolute;
+  cursor: pointer;
+  padding: 0;
 }
