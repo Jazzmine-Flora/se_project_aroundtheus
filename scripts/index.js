@@ -32,7 +32,7 @@ const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#profile-add-modal");
 const previewImageModal = document.querySelector("#preview_image_modal");
 const previewImage = document.querySelector("#preview-image");
-const previewCloseButton = document.querySelector("#preview-close-button");
+const previewCloseButton = previewImageModal.querySelector(".modal__close");
 const previewImageDescription = document.querySelector(
   ".preview_modal_description"
 );
