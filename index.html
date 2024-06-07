@@ -40,6 +40,7 @@
         <p class="footer__copyright">&copy; 2024 Taliba Sadiq</p>
       </footer>
     </div>
+
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button class="modal__close" id="profile-close-button"></button>
@@ -92,11 +93,23 @@
       </div>
     </div>
 
+    <div class="preview_image_modal">
+      <div class="modal_container_preview">
+        <button class="modal__close" id="preview-close-button"></button>
+        <img class="modal__image" id="preview-image" src="" alt="Preview" />
+        <div
+          class="previewModalDescription"
+          id="preview-image-description"
+        ></div>
+      </div>
+    </div>
+
     <template id="card-template">
       <li class="card">
-        <img src="" alt="" class="card__image" />
-        <button class="card__delete-button" type="button"></button>
-
+        <div class="card__image_container">
+          <img src="" alt="" class="card__image" />
+          <button class="card__delete-button" type="button"></button>
+        </div>
         <div class="card__description">
           <h2 class="card__text"></h2>
           <button class="card__button-like" type="button"></button>

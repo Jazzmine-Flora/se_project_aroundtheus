@@ -31,7 +31,12 @@
   /*border-radius: 10px 10px 0 0;*/
   object-fit: cover;
   z-index: 1;
+  cursor: pointer;
+}
+
+.card__image_container {
   position: relative;
+  height: 282px;
 }
 
 .card__description {
@@ -76,4 +81,11 @@
   position: absolute;
   cursor: pointer;
   padding: 0;
+}
+
+.preview__image_modal {
+  width: 433px;
+  height: 540px;
+  top: 90px;
+  left: 424px;
 }

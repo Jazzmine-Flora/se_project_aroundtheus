@@ -13,6 +13,7 @@
 
 .modal__opened {
   visibility: visible;
+  /*display: block;*/
 }
 
 .modal__heading {
@@ -63,9 +64,17 @@
   height: 14px;
 }
 
-/*.modal_opened {
-  display: flex;
-}*/
+.preview_image_modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
 
 .modal__container {
   /*padding: 36px;*/
@@ -78,6 +87,13 @@
   flex-direction: column;
   width: 430px;
   height: 330px;
+}
+
+.modal_container_preview {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
 }
 
 .modal__button {
@@ -121,6 +137,34 @@
   bottom: calc(100% + 5px);
   left: calc(100% + 5px);
   cursor: pointer;
+}
+
+#preview-close-button {
+  background-image: url("../images/CloseIcon.svg");
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal__image {
+  max-width: 100%;
+  height: auto;
+}
+
+.previewModalDescription {
+  width: 291px;
+  height: 12px;
+  top: 640px;
+  left: 424px;
+  font-family: "Inter";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
 }
 
 .modal__close:hover {

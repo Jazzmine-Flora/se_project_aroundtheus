@@ -30,6 +30,10 @@ console.log(initialCards);
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#profile-add-modal");
+const previewImageModal = document.querySelector(".preview_image_modal");
+const previewImage = document.querySelector("#preview-image");
+const previewCloseButton = document.querySelector("#preview-close-button");
+
 const profileModalCloseButton = profileEditModal.querySelector(".modal__close");
 const addCardModalCloseButton = addCardModal.querySelector(".modal__close");
 const profileTitle = document.querySelector(".profile__title");
@@ -76,6 +80,20 @@ function getCardElement(cardData) {
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__button-like_active");
   });
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove(".card");
+  });
+  cardImageEl.addEventListener("click", () => {
+    previewImage.src = cardData.link;
+    previewImage.alt = cardData.name;
+    openPopup(previewImageModal);
+    console.log("clicks");
+  });
+  cardTitleEl.textContent = cardData.name;
+  cardImageEl.src = cardData.link;
+  cardImageEl.alt = cardData.name;
+  return cardElement;
   // code goes here
 
   cardTitleEl.textContent = cardData.name;
