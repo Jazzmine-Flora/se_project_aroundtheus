@@ -72,6 +72,11 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__text");
+  const likeButton = cardElement.querySelector(".card__button-like");
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__button-like_active");
+  });
+  // code goes here
 
   cardTitleEl.textContent = cardData.name;
   cardImageEl.src = cardData.link;
@@ -119,9 +124,9 @@ addCardModalCloseButton.addEventListener("click", () =>
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
-const likeButtons = document.querySelectorAll(".card__button-like");
+/*const likeButtons = document.querySelectorAll(".card__button-like");
 likeButtons.forEach((likeButton) => {
   likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle(".card__button-like_active");
+    likeButton.classList.toggle("card__button-like_active");
   });
-});
+});*/

@@ -59,5 +59,9 @@
 }
 
 .card__button-like_active {
-  background: url("../images/activelike.svg");
+  background: url("../images/activelike.svg") center no-repeat;
+}
+
+.card__delete-button {
+  background: url("../images/Trash.svg");
 }
