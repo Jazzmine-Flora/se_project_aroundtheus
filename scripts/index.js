@@ -62,11 +62,11 @@ const cardTemplate =
 /*functions*/
 
 function closePopup(modal) {
-  modal.classList.remove("modal__opened");
+  modal.classList.remove("modal_opened");
 }
 /*new code p5*/
 function openPopup(modal) {
-  modal.classList.add("modal__opened");
+  modal.classList.add("modal_opened");
 }
 
 function renderCard(cardData, cardListEl) {
@@ -85,7 +85,7 @@ function getCardElement(cardData) {
   });
   const deleteButton = cardElement.querySelector(".card__delete-button");
   deleteButton.addEventListener("click", () => {
-    cardElement.remove(".card");
+    cardElement.remove();
   });
   cardImageEl.addEventListener("click", () => {
     previewImage.src = cardData.link;
@@ -119,6 +119,7 @@ function handleAddCardFormSubmit(e) {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
+  e.target.reset();
   closePopup(addCardModal);
 }
 
