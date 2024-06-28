@@ -46,37 +46,41 @@
         <button class="modal__close" id="profile-close-button"></button>
         <p class="modal__heading">Edit Profile</p>
         <form class="modal__form">
-          <label class="label__container">
-            <input
-              class="modal__form-input"
-              type="text"
-              name="title"
-              id="profile-title-input"
-              placeholder="Name"
-              required
-              minlength="2"
-              maxlength="40"
-            />
-            <span class="error__message" id="profile-title-input-error"></span>
-          </label>
+          <!-- <label class="label__container"> -->
+          <input
+            class="modal__form-input"
+            type="text"
+            name="title"
+            id="profile-title-input"
+            placeholder="Name"
+            required
+            minlength="2"
+            maxlength="40"
+          />
+          <span class="error__message" id="profile-title-input-error"></span>
+          <!-- </label> -->
 
-          <label class="label__container">
-            <input
-              class="modal__form-input"
-              type="text"
-              name="description"
-              id="profile-description-input"
-              placeholder="Description"
-              required
-              minlength="2"
-              maxlength="200"
-            />
-            <span
-              class="error__message"
-              id="profile-description-input-error"
-            ></span>
-          </label>
-          <button class="button modal__button" type="submit">
+          <!-- <label class="label__container"> -->
+          <input
+            class="modal__form-input"
+            type="text"
+            name="description"
+            id="profile-description-input"
+            placeholder="Description"
+            required
+            minlength="2"
+            maxlength="200"
+          />
+          <span
+            class="error__message"
+            id="profile-description-input-error"
+          ></span>
+          <!-- </label> -->
+          <button
+            class="button modal__button modal__button_disabled"
+            disabled
+            type="submit"
+          >
             <span class="modal__button-text">Save</span>
           </button>
         </form>
@@ -88,21 +92,40 @@
         <button class="modal__close" id="card-close-button"></button>
         <p class="modal__heading">New Place</p>
         <form class="modal__form">
+          <!-- <label class="label__container"> -->
           <input
             class="modal__form-input modal__form-input_type_title"
             type="text"
             name="title"
             id="profile-title-input"
             placeholder="Title"
+            required
+            minlength="2"
+            maxlength="40"
           />
+          <span class="error__message" id="profile-title-input-error"></span>
+          <!-- </label> -->
+          <!-- <label class="label__container"> -->
           <input
             class="modal__form-input modal__form-input_type_url"
             type="text"
             name="url"
             id="profile-description-input"
             placeholder="Image URL"
+            required
+            minlength="2"
+            maxlength="200"
           />
-          <button class="button modal__button" type="submit">
+          <span
+            class="error__message"
+            id="profile-description-input-error"
+          ></span>
+          <!-- </label> -->
+          <button
+            class="button modal__button modal__button_disabled"
+            disabled
+            type="submit"
+          >
             <span class="modal__button-text">Create</span>
           </button>
         </form>
