@@ -146,10 +146,3 @@ addCardModalCloseButton.addEventListener("click", () =>
 /*----*/
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
-
-/*const likeButtons = document.querySelectorAll(".card__button-like");
-likeButtons.forEach((likeButton) => {
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__button-like_active");
-  });
-});*/
