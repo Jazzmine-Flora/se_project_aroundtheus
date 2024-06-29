@@ -59,14 +59,34 @@ const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
+const modals = [addCardModal, profileEditModal, previewImageModal];
+modals.forEach((modal) => {
+  modal.addEventListener("click", closePopupByOverlay);
+});
+
+function closePopupByPressingESC(evt) {
+  if (evt.key === "Escape") {
+    const modal = document.querySelector(".modal_opened");
+    closePopup(modal);
+  }
+}
+
+function closePopupByOverlay(evt) {
+  if (evt.target.classList.contains("modal")) {
+    closePopup(evt.target);
+  }
+}
+
 /*functions*/
 
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closePopupByPressingESC);
 }
 /*new code p5*/
 function openPopup(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closePopupByPressingESC);
 }
 
 function renderCard(cardData, cardListEl) {
