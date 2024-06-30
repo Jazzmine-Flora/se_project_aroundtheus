@@ -121,6 +121,11 @@
   transition: opacity 0.2s ease-in-out;
 }
 
+.modal__button_disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
 .modal__button_disabled:hover {
   opacity: 0.2;
 }
