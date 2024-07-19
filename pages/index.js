@@ -131,8 +131,8 @@ const editFormElement = profileEditForm.querySelector(".modal__form");
 const addFormElement = profileAddForm.querySelector(".modal__form");
 // console.log(profileEditForm);
 // console.log(profileAddForm);
-const editFormValidator = new FormValidator(validationSettings, editFormElement);
-const addFormValidator = new FormValidator(validationSettings, addFormElement);
+const editFormValidator = new FormValidator(validationSettings, profileEditForm);
+const addFormValidator = new FormValidator(validationSettings, profileAddForm);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
