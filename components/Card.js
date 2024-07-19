@@ -16,6 +16,16 @@ export default class Card {
      this._cardElement.querySelector(".card__delete-button").addEventListener("click", () => {
        this._handleDeleteCard();
      })
+
+     this._cardElement.querySelector(".card__image").addEventListener("click", () => {
+      this._handlePreviewPicture();
+     })
+    }
+
+    _handlePreviewPicture() {
+     previewImage.src = this._link;
+     previewImage.alt = this._name;
+     previewElement.classList.add("modal_opened");
     }
  
     _handleDeleteCard() {
@@ -27,15 +37,22 @@ export default class Card {
      this._cardElement.querySelector(".card__button-like").classList.toggle("card__button-like_active");
     }
  
-    _handlePreviewPicture() {
-     
-    }
+   
  
     getView() {
-     this._cardElement = document.querySelector(this._cardSelector).content.querySelector(".card").cloneNode(true);
-    
+     this._cardElement = this._getTemplate();
+     this._cardImageEl = this._cardElement.querySelector(".card__image");
+     this._cardTitleEl = this._cardElement.querySelector(".card__text");
+     this._likeButton = this._cardElement.querySelector(".card__button-like");
+     this._deleteButton = cardElement.querySelector(".card__delete-button");
+     this._cardTitleEl.textContent = this._name;
+     this._cardImageEl.src = this._link;
      // get card view
      this._setEventListeners();
-     // return the card
+     return this._cardElement;
+    }
+
+    _getTemplate() {
+      return document.querySelector(this._cardSelector).content.querySelector(".card").cloneNode(true);
     }
  } 
