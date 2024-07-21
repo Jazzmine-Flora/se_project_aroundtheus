@@ -1,5 +1,49 @@
 import Card from "../components/Card.js";
-import FormValidator from "../components/FormValidator.js"
+import FormValidator from "../components/FormValidator.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  const profileEditForm = document.querySelector(
+    "#profile-edit-modal .modal__form"
+  );
+  const profileAddForm = document.querySelector(
+    "#profile-add-modal .modal__form"
+  );
+
+  if (profileEditForm) {
+    const formValidator = new FormValidator(
+      {
+        inputSelector: ".modal__form-input",
+        submitButtonSelector: ".modal__button",
+        inactiveButtonClass: "modal_button_disabled",
+        inputErrorClass: "modal__input_type_error",
+        errorClass: "modal__input-error_active",
+      },
+      profileEditForm
+    );
+
+    formValidator.enableValidation();
+  } else {
+    console.error("Profile edit form element not found");
+  }
+
+  if (profileAddForm) {
+    const formValidator = new FormValidator(
+      {
+        inputSelector: ".modal__form-input",
+        submitButtonSelector: ".modal__button",
+        inactiveButtonClass: "modal_button_disabled",
+        inputErrorClass: "modal__input_type_error",
+        errorClass: "modal__input-error_active",
+      },
+      profileAddForm
+    );
+
+    formValidator.enableValidation();
+  } else {
+    console.error("Profile add form element not found");
+  }
+});
+
 //new from git
 const initialCards = [
   {
@@ -41,9 +85,9 @@ const cardData = {
   // link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
   // name: "Lago di Braies",
   // link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-}
+};
 
-const card = new Card (cardData, "#card-template");
+const card = new Card(cardData, "#card-template");
 card.getView();
 
 // console.log(initialCards);
@@ -131,7 +175,10 @@ const editFormElement = profileEditForm.querySelector(".modal__form");
 const addFormElement = profileAddForm.querySelector(".modal__form");
 // console.log(profileEditForm);
 // console.log(profileAddForm);
-const editFormValidator = new FormValidator(validationSettings, profileEditForm);
+const editFormValidator = new FormValidator(
+  validationSettings,
+  profileEditForm
+);
 const addFormValidator = new FormValidator(validationSettings, profileAddForm);
 
 editFormValidator.enableValidation();

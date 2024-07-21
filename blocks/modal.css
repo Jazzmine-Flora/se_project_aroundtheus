@@ -242,7 +242,7 @@
 /* .label__container {
 } */
 
-.error__message {
+.modal__form-error {
   color: red;
   width: 100%;
   /* height: 12px; */
