@@ -175,14 +175,14 @@ const editFormElement = profileEditForm.querySelector(".modal__form");
 const addFormElement = profileAddForm.querySelector(".modal__form");
 // console.log(profileEditForm);
 // console.log(profileAddForm);
-const editFormValidator = new FormValidator(
-  validationSettings,
-  profileEditForm
-);
-const addFormValidator = new FormValidator(validationSettings, profileAddForm);
+// const editFormValidator = new FormValidator(
+//   validationSettings,
+//   profileEditForm
+// );
+// const addFormValidator = new FormValidator(validationSettings, profileAddForm);
 
-editFormValidator.enableValidation();
-addFormValidator.enableValidation();
+// editFormValidator.enableValidation();
+// addFormValidator.enableValidation();
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
