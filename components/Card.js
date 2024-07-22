@@ -5,6 +5,10 @@ export default class Card {
     this._cardSelector = cardSelector;
     this.previewImage = document.querySelector("#preview-image");
     this._previewElement = document.getElementById("preview_image_modal");
+    this._previewImageDescription = document.querySelector(
+      ".preview_modal_description"
+    );
+    console.log("Preview title:", this._previewImageDescription);
   }
 
   _setEventListeners() {
@@ -33,6 +37,7 @@ export default class Card {
     this.previewImage.src = this._link;
     this.previewImage.alt = this._name;
     this._previewElement.classList.add("modal_opened");
+    this._previewImageDescription = this._name;
   }
 
   _handleDeleteCard() {
