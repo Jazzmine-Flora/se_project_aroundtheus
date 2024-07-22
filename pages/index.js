@@ -99,8 +99,8 @@ const profileDescriptionInput = document.querySelector(
 );
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const profileAddForm = addCardModal.querySelector(".modal__form");
-const cardTitleInput = document.querySelector("#title-input");
-const cardUrlInput = document.querySelector("#url-input");
+const cardTitleInput = document.querySelector(".modal__form-input_type_title");
+const cardUrlInput = document.querySelector(".modal__form-input_type_url");
 const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;

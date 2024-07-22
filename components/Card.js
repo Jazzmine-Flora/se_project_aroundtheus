@@ -3,7 +3,7 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
-    // this.previewImage = document.getElementById("preview-image");
+    this.previewImage = document.getElementById("preview-image");
   }
 
   _setEventListeners() {
