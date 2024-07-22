@@ -4,6 +4,7 @@ export default class Card {
     this._link = data.link;
     this._cardSelector = cardSelector;
     this.previewImage = document.querySelector("#preview-image");
+    this._previewElement = document.getElementById("preview_image_modal");
   }
 
   _setEventListeners() {
@@ -31,7 +32,7 @@ export default class Card {
   _handlePreviewPicture() {
     this.previewImage.src = this._link;
     this.previewImage.alt = this._name;
-    previewElement.classList.add("modal_opened");
+    this._previewElement.classList.add("modal_opened");
   }
 
   _handleDeleteCard() {
