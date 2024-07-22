@@ -3,7 +3,7 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
-    this.previewImage = document.getElementById("preview-image");
+    this.previewImage = document.querySelector("#preview-image");
   }
 
   _setEventListeners() {
@@ -29,8 +29,8 @@ export default class Card {
   }
 
   _handlePreviewPicture() {
-    previewImage.src = this._link;
-    previewImage.alt = this._name;
+    this.previewImage.src = this._link;
+    this.previewImage.alt = this._name;
     previewElement.classList.add("modal_opened");
   }
 
