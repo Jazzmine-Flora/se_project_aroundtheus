@@ -33,6 +33,11 @@
   padding: 34px 36px 0 36px;
 }
 
+/* .modal_form-input-container {
+  position: relative;
+  margin-bottom: 15px; /* Ensure consistent margin */
+/* } */
+
 .modal__form {
   /*display: flex;
   flex-direction: column;*/
@@ -43,7 +48,7 @@
 }
 
 .modal__form-input {
-  min-height: 27.26px;
+  height: 27.26px;
   border: 1px solid rgba(0, 0, 0, 1);
   font-family: Inter;
   font-size: 14px;
@@ -56,6 +61,7 @@
   border-right: 0;
   width: 100%;
   padding: 0;
+  margin-bottom: 30px;
 }
 
 .form__input::placeholder {
@@ -113,7 +119,7 @@
   cursor: pointer;
   border: none;
   padding: 0;
-  margin-top: 31px;
+  margin-top: 18px;
 }
 
 .modal__button:hover {
@@ -190,8 +196,9 @@
 
 @media screen and (max-width: 480px) {
   .modal__container {
-    width: 282px;
+    max-width: 95%;
     height: 322px;
+    padding: 10px;
   }
 
   .modal__close {
@@ -210,7 +217,7 @@
     width: 238px;
     height: 22px;
     padding: 25px 22px 0 22px;
-    margin-bottom: 75px;
+    margin-bottom: 76px;
   }
 
   .modal__button {
@@ -218,6 +225,7 @@
     height: 46px;
     border-radius: 2px;
     padding: 0;
+    margin-top: 16px;
   }
 
   .modal__button-text {
@@ -232,11 +240,40 @@
   }
 
   .modal__form {
-    max-width: 238px;
-    padding: 0 22px 25px;
+    /* max-width: 238px; */
+    /* height: 26px; */
+    padding: 0 12px 15px;
     margin: 0;
-    grid-gap: 30px;
+    /* grid-gap: 30px; */
   }
+
+  .modal__form-input {
+    max-width: 100%;
+    height: 26px;
+    margin-bottom: 30px;
+    gap: 0;
+  }
+
+  .modal__form-error {
+    color: red;
+    max-width: 258px;
+    height: 16px;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    /* line-height: 14.52px; */
+    text-align: left;
+    display: flex;
+    margin-top: 30px;
+
+    position: absolute;
+    padding-right: 10px;
+  }
+
+  /* .modal__form-input_type_title {
+    max-width: 238px;
+    height: 26px;
+  } */
 }
 
 /* .label__container {
@@ -244,15 +281,17 @@
 
 .modal__form-error {
   color: red;
-  width: 100%;
-  /* height: 12px; */
+  max-width: 358px;
+  height: 16px;
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
   /* line-height: 14.52px; */
   text-align: left;
   display: flex;
-  margin-top: 5px;
+  margin-top: 30px;
+
+  position: absolute;
 }
 
 .popup__input_type_error {
