@@ -37,7 +37,7 @@ export default class Card {
     this.previewImage.src = this._link;
     this.previewImage.alt = this._name;
     this._previewElement.classList.add("modal_opened");
-    this._previewImageDescription = this._name;
+    this._previewImageDescription.textContent = this._name;
   }
 
   _handleDeleteCard() {
