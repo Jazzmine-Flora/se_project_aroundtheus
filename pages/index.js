@@ -48,9 +48,10 @@ const initialCards = [
   },
 ];
 
-// const cardData = {
-//   name: "Yosemite Valley",
-//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+const cardData = {
+  name: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+};
 //   // name: "Lake Louise",
 //   // link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
 //   // name: "Bald Mountains",
@@ -80,7 +81,7 @@ const previewElement = document.getElementById("preview_image_modal");
 const previewImageDescription = document.querySelector(
   ".preview_modal_description"
 );
-
+const cardSelector = "#card-template";
 const profileModalCloseButton = document.querySelector(
   "#profile-edit-modal .modal__close"
 );
@@ -136,13 +137,20 @@ function openPopup(modal) {
   document.addEventListener("keydown", closePopupByPressingESC);
 }
 
+// function createCard(item) {
+//   return cardElement.getView();
+// }
+// function renderCard(cardData, cardListEl) {
+//   const cardElement = createCard(cardData);
+//   cardListEl.prepend(cardElement);
+// }
+
 function renderCard(cardData, cardListEl) {
-  const card = new Card(cardData, "#card-template");
+  // const cardSelector = "#card-template";
+  const card = new Card(cardData, cardSelector, handlePreviewPicture);
   const cardElement = card.getView();
   cardListEl.prepend(cardElement);
 }
-
-// const cardSelector = "#card-template";
 
 /*---*/
 // const validationSettings = {
@@ -214,12 +222,21 @@ function handleAddCardFormSubmit(e) {
   closePopup(addCardModal);
 }
 
-function handlePreviewPicture({ link, name }) {
+function handlePreviewPicture(name, link) {
+  console.log("handlePreviewPicture called with:", name, link);
+  const previewImage = document.querySelector("#preview-image");
+  const previewElement = document.getElementById("preview_image_modal");
+  const previewImageDescription = document.querySelector(
+    ".preview_modal_description"
+  );
   previewImage.src = link;
-  previewImage.alt = "Preview Image";
+  previewImage.alt = name;
+
   previewImageDescription.textContent = name;
-  openPopup(previewImageModal);
+  previewElement.classList.add("modal_opened");
+  // openPopup();
 }
+const card = new Card(cardData, cardSelector, handlePreviewPicture);
 
 /*event listeners 1*/
 
