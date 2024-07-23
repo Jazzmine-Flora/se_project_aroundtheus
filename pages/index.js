@@ -76,6 +76,7 @@ const previewImage = document.querySelector("#preview-image");
 const previewCloseButton = document.querySelector(
   "#preview_image_modal .modal__close"
 );
+const previewElement = document.getElementById("preview_image_modal");
 const previewImageDescription = document.querySelector(
   ".preview_modal_description"
 );
@@ -144,16 +145,16 @@ function renderCard(cardData, cardListEl) {
 // const cardSelector = "#card-template";
 
 /*---*/
-const validationSettings = {
-  inputSelector: ".modal__form-input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-};
+// const validationSettings = {
+//   inputSelector: ".modal__form-input",
+//   submitButtonSelector: ".modal__button",
+//   inactiveButtonClass: "modal__button_disabled",
+//   inputErrorClass: "popup__input_type_error",
+//   errorClass: "popup__error_visible",
+// };
 
-const editFormElement = profileEditForm.querySelector(".modal__form");
-const addFormElement = profileAddForm.querySelector(".modal__form");
+// const editFormElement = profileEditForm.querySelector(".modal__form");
+// const addFormElement = profileAddForm.querySelector(".modal__form");
 // console.log(profileEditForm);
 // console.log(profileAddForm);
 // const editFormValidator = new FormValidator(
@@ -211,6 +212,13 @@ function handleAddCardFormSubmit(e) {
   renderCard({ name, link }, cardListEl);
   e.target.reset();
   closePopup(addCardModal);
+}
+
+function handlePreviewPicture({ link, name }) {
+  previewImage.src = link;
+  previewImage.alt = "Preview Image";
+  previewImageDescription.textContent = name;
+  openPopup(previewImageModal);
 }
 
 /*event listeners 1*/
