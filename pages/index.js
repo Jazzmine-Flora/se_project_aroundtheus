@@ -52,22 +52,6 @@ const cardData = {
   name: "Yosemite Valley",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
-//   // name: "Lake Louise",
-//   // link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-//   // name: "Bald Mountains",
-//   // link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-//   // name: "Latemar",
-//   // link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-//   // name: "Vanoise National Park",
-//   // link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-//   // name: "Lago di Braies",
-//   // link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-// };
-
-// const card = new Card(cardData, "#card-template");
-// card.getView();
-
-// console.log(initialCards);
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -137,14 +121,6 @@ function openPopup(modal) {
   document.addEventListener("keydown", closePopupByPressingESC);
 }
 
-// function createCard(item) {
-//   return cardElement.getView();
-// }
-// function renderCard(cardData, cardListEl) {
-//   const cardElement = createCard(cardData);
-//   cardListEl.prepend(cardElement);
-// }
-
 function renderCard(cardData, cardListEl) {
   // const cardSelector = "#card-template";
   const card = new Card(cardData, cardSelector, handlePreviewPicture);
@@ -153,54 +129,7 @@ function renderCard(cardData, cardListEl) {
 }
 
 /*---*/
-// const validationSettings = {
-//   inputSelector: ".modal__form-input",
-//   submitButtonSelector: ".modal__button",
-//   inactiveButtonClass: "modal__button_disabled",
-//   inputErrorClass: "popup__input_type_error",
-//   errorClass: "popup__error_visible",
-// };
 
-// const editFormElement = profileEditForm.querySelector(".modal__form");
-// const addFormElement = profileAddForm.querySelector(".modal__form");
-// console.log(profileEditForm);
-// console.log(profileAddForm);
-// const editFormValidator = new FormValidator(
-//   validationSettings,
-//   profileEditForm
-// );
-// const addFormValidator = new FormValidator(validationSettings, profileAddForm);
-
-// editFormValidator.enableValidation();
-// addFormValidator.enableValidation();
-
-// function getCardElement(cardData) {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardImageEl = cardElement.querySelector(".card__image");
-//   const cardTitleEl = cardElement.querySelector(".card__text");
-//   const likeButton = cardElement.querySelector(".card__button-like");
-//   likeButton.addEventListener("click", () => {
-//     likeButton.classList.toggle("card__button-like_active");
-//   });
-//   const deleteButton = cardElement.querySelector(".card__delete-button");
-//   deleteButton.addEventListener("click", () => {
-//     cardElement.remove();
-//   });
-//   cardImageEl.addEventListener("click", () => {
-//     previewImage.src = cardData.link;
-//     previewImage.alt = cardData.name;
-//     previewImageDescription.textContent = cardData.name;
-
-//     openPopup(previewImageModal);
-//     console.log("clicks");
-//   });
-//   cardTitleEl.textContent = cardData.name;
-//   cardImageEl.src = cardData.link;
-//   cardImageEl.alt = cardData.name;
-
-//   return cardElement;
-//   // code goes here
-// }
 previewCloseButton.addEventListener("click", () => {
   closePopup(previewImageModal);
 });
@@ -234,7 +163,6 @@ function handlePreviewPicture(name, link) {
 
   previewImageDescription.textContent = name;
   previewElement.classList.add("modal_opened");
-  // openPopup();
 }
 const card = new Card(cardData, cardSelector, handlePreviewPicture);
 
@@ -251,10 +179,6 @@ profileModalCloseButton.addEventListener("click", () =>
 );
 profileEditModal.addEventListener("submit", handleProfileEditSubmit);
 addCardModal.addEventListener("submit", handleAddCardFormSubmit);
-
-// document
-//   .querySelector("#profile-add-button")
-//   .addEventListener("click", () => openPopup(addCardModal));
 
 /*new code P5*/
 addNewCardButton.addEventListener("click", () => openPopup(addCardModal));
