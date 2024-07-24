@@ -10,7 +10,6 @@ export default class FormValidator {
     this._inputEls = Array.from(
       this._formEl.querySelectorAll(this._inputSelector)
     );
-    // this._inputEls = [...this._formEl.querySelectorAll(this._inputSelector)];
   }
 
   _showInputError(inputEl) {
@@ -23,9 +22,6 @@ export default class FormValidator {
       console.error(`Element with id ${inputEl.id}-error not found`);
     }
   }
-  // inputEl.classList.add(this._inputErrorClass);
-  // errorMessageEl.textContent = inputEl.validationMessage;
-  // errorMessageEl.classList.add(this._errorClass);
 
   _hideInputError(inputEl) {
     const errorMessageEl = this._formEl.querySelector(`#${inputEl.id}-error`);
@@ -37,11 +33,8 @@ export default class FormValidator {
       console.error(`Element with id ${inputEl.id}-error not found`);
     }
   }
-  // inputEl.classList.remove(this._inputErrorClass);
-  // errorMessageEl.textContent = "";
-  // errorMessageEl.classList.remove(this._errorClass);
 
-  _toggleButtonState() {
+  toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._submitButton.classList.add(this._inactiveButtonClass);
       this._submitButton.disabled = true;
@@ -64,46 +57,20 @@ export default class FormValidator {
   }
 
   _setEventListeners() {
-    // this._inputEls = [...this._form.querySelectorAll(this._inputSelector)];
-    // this._submitButton = this._form.querySelector(this._submitButtonSelector);
-
     this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", (e) => {
         this._checkInputValidity(inputEl);
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
+    });
+    this._formEl.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+      this.toggleButtonState();
     });
   }
 
   enableValidation() {
-    // const inputList = Array.from(
-    //   this._formEl.querySelectorAll(this._inputSelector)
-    // );
-    // inputList.forEach((inputEl) => {
-    //   inputEl.addEventListener("input", () => {
-    //     this._checkInputValidity(inputEl);
-    //   });
-    // });
-    this._toggleButtonState();
+    this.toggleButtonState();
     this._setEventListeners();
   }
-  //   this._form.addEventListener("submit", (e) => {
-  //     e.preventDefault();
-  //   });
-  //   this._setEventListeners(this._form, options);
-  // }
 }
-
-// const settings {
-//   formSelector: ".modal__form",
-//   inputSelector: ".modal__form-input",
-//   submitButtonSelector: ".modal__button",
-//   inactiveButtonClass: "modal__button_disabled",
-//   inputErrorClass: "popup__input_type_error",
-//   errorClass: "popup__error_visible",
-
-// }
-
-// const editFormValidator = new FormValidator();
-// editFormValidator.enableValidation();
-// const addFormValidator = new FormValidator(settings, addForm);

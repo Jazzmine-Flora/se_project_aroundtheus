@@ -7,28 +7,40 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   const newCardForm = document.querySelector("#profile-add-modal .modal__form");
 
-  // Create instances of FormValidator for each form
-  const profileFormValidator = new FormValidator(
-    {
-      inputSelector: ".modal__form-input",
-      submitButtonSelector: ".modal__button",
-      inactiveButtonClass: "modal__button_disabled",
-      inputErrorClass: "modal__input_type_error",
-      errorClass: "modal__error_visible",
-    },
-    profileForm
-  );
+  const validationConfig = {
+    inputSelector: ".modal__form-input",
+    submitButtonSelector: ".modal__button",
+    inactiveButtonClass: "modal__button_disabled",
+    inputErrorClass: "modal__input_type_error",
+    errorClass: "modal__error_visible",
+  };
 
-  const newCardFormValidator = new FormValidator(
-    {
-      inputSelector: ".modal__form-input",
-      submitButtonSelector: ".modal__button",
-      inactiveButtonClass: "modal__button_disabled",
-      inputErrorClass: "modal__input_type_error",
-      errorClass: "modal__error_visible",
-    },
-    newCardForm
-  );
+  // Create instances of FormValidator for each form
+  const profileFormValidator = new FormValidator(validationConfig, profileForm);
+  const newCardFormValidator = new FormValidator(validationConfig, newCardForm);
+
+  // Create instances of FormValidator for each form
+  // const profileFormValidator = new FormValidator(
+  //   {
+  //     inputSelector: ".modal__form-input",
+  //     submitButtonSelector: ".modal__button",
+  //     inactiveButtonClass: "modal__button_disabled",
+  //     inputErrorClass: "modal__input_type_error",
+  //     errorClass: "modal__error_visible",
+  //   },
+  //   profileForm
+  // );
+
+  // const newCardFormValidator = new FormValidator(
+  //   {
+  //     inputSelector: ".modal__form-input",
+  //     submitButtonSelector: ".modal__button",
+  //     inactiveButtonClass: "modal__button_disabled",
+  //     inputErrorClass: "modal__input_type_error",
+  //     errorClass: "modal__error_visible",
+  //   },
+  //   newCardForm
+  // );
 
   // Enable validation for both forms
   profileFormValidator.enableValidation();
@@ -236,3 +248,15 @@ addCardModalCloseButton.addEventListener("click", () =>
 /*----*/
 
 initialCards.forEach((item) => renderCard(item, cardListEl));
+
+// function handleSubmit(evt, formValidator) {
+//   evt.preventDefault();
+//   // Your form submission logic
+//   formValidator.toggleButtonState();
+// }
+
+// const addCardForm = document.querySelector(".modal__form");
+
+// addCardForm.addEventListener("submit", (evt) =>
+//   handleSubmit(evt, newCardFormValidator)
+// );
