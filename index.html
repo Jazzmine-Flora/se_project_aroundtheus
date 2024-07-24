@@ -46,35 +46,39 @@
         <button class="modal__close" id="profile-close-button"></button>
         <p class="modal__heading">Edit Profile</p>
         <form class="modal__form">
-          <!-- <label class="label__container"> -->
-          <input
-            class="modal__form-input"
-            type="text"
-            name="title"
-            id="profile-title-input"
-            placeholder="Name"
-            required
-            minlength="2"
-            maxlength="40"
-          />
-          <span class="modal__form-error" id="profile-title-input-error"></span>
-          <!-- </label> -->
-
-          <!-- <label class="label__container"> -->
-          <input
-            class="modal__form-input"
-            type="text"
-            name="description"
-            id="profile-description-input"
-            placeholder="Description"
-            required
-            minlength="2"
-            maxlength="200"
-          />
-          <span
-            class="modal__form-error"
-            id="profile-description-input-error"
-          ></span>
+          <div class="input-container">
+            <input
+              class="modal__form-input"
+              type="text"
+              name="title"
+              id="profile-title-input"
+              placeholder="Name"
+              required
+              minlength="2"
+              maxlength="40"
+            />
+            <span
+              class="modal__form-error modal__form-error_visible"
+              id="profile-title-input-error"
+            ></span>
+            <!-- </label> -->
+          </div>
+          <div class="input-container">
+            <input
+              class="modal__form-input"
+              type="text"
+              name="description"
+              id="profile-description-input"
+              placeholder="Description"
+              required
+              minlength="2"
+              maxlength="200"
+            />
+            <span
+              class="modal__form-error modal__form-error_visible"
+              id="profile-description-input-error"
+            ></span>
+          </div>
           <!-- </label> -->
           <button
             class="modal__button modal__button_disabled"

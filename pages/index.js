@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
         inputSelector: ".modal__form-input",
         submitButtonSelector: ".modal__button",
         inactiveButtonClass: "modal__button_disabled",
-        inputErrorClass: "popup__input_type_error",
-        errorClass: "popup__error_visible",
+        inputErrorClass: "modal__input_type_error",
+        errorClass: "modal__error_visible",
       },
       form
     );
@@ -164,7 +164,7 @@ function handlePreviewPicture(name, link) {
   previewImageDescription.textContent = name;
   previewElement.classList.add("modal_opened");
 }
-const card = new Card(cardData, cardSelector, handlePreviewPicture);
+// const card = new Card(cardData, cardSelector, handlePreviewPicture);
 
 /*event listeners 1*/
 
