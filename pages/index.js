@@ -2,23 +2,55 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const formElements = document.querySelectorAll(".modal__form");
+  const profileForm = document.querySelector(
+    "#profile-edit-modal .modal__form"
+  );
+  const newCardForm = document.querySelector("#profile-add-modal .modal__form");
 
-  formElements.forEach((form) => {
-    const formValidator = new FormValidator(
-      {
-        inputSelector: ".modal__form-input",
-        submitButtonSelector: ".modal__button",
-        inactiveButtonClass: "modal__button_disabled",
-        inputErrorClass: "modal__input_type_error",
-        errorClass: "modal__error_visible",
-      },
-      form
-    );
+  // Create instances of FormValidator for each form
+  const profileFormValidator = new FormValidator(
+    {
+      inputSelector: ".modal__form-input",
+      submitButtonSelector: ".modal__button",
+      inactiveButtonClass: "modal__button_disabled",
+      inputErrorClass: "modal__input_type_error",
+      errorClass: "modal__error_visible",
+    },
+    profileForm
+  );
 
-    formValidator.enableValidation();
-  });
+  const newCardFormValidator = new FormValidator(
+    {
+      inputSelector: ".modal__form-input",
+      submitButtonSelector: ".modal__button",
+      inactiveButtonClass: "modal__button_disabled",
+      inputErrorClass: "modal__input_type_error",
+      errorClass: "modal__error_visible",
+    },
+    newCardForm
+  );
+
+  // Enable validation for both forms
+  profileFormValidator.enableValidation();
+  newCardFormValidator.enableValidation();
 });
+//   const formElements = document.querySelectorAll(".modal__form");
+
+//   formElements.forEach((form) => {
+//     const formValidator = new FormValidator(
+//       {
+//         inputSelector: ".modal__form-input",
+//         submitButtonSelector: ".modal__button",
+//         inactiveButtonClass: "modal__button_disabled",
+//         inputErrorClass: "modal__input_type_error",
+//         errorClass: "modal__error_visible",
+//       },
+//       form
+//     );
+
+//     formValidator.enableValidation();
+//   });
+// });
 
 //new from git
 const initialCards = [
@@ -97,10 +129,16 @@ modals.forEach((modal) => {
 });
 
 function closePopupByPressingESC(evt) {
-  if (evt.key === "Escape") {
-    const modal = document.querySelector(".modal_opened");
-    closePopup(modal);
+  if (evt.key === "Escape" || evt.keyCode === 27) {
+    const openedModal = document.querySelector(".modal_opened");
+    if (openedModal) {
+      closePopup(openedModal);
+    }
   }
+  // if (evt.key === "Escape") {
+  //   const modal = document.querySelector(".modal_opened");
+  //   closePopup(modal);
+  // }
 }
 
 function closePopupByOverlay(evt) {
@@ -123,8 +161,10 @@ function openPopup(modal) {
 
 function renderCard(cardData, cardListEl) {
   // const cardSelector = "#card-template";
-  const card = new Card(cardData, cardSelector, handlePreviewPicture);
-  const cardElement = card.getView();
+  // const card = new Card(cardData, cardSelector, handlePreviewPicture);
+  //
+  const cardElement = createCard(cardData);
+
   cardListEl.prepend(cardElement);
 }
 
@@ -162,9 +202,16 @@ function handlePreviewPicture(name, link) {
   previewImage.alt = name;
 
   previewImageDescription.textContent = name;
-  previewElement.classList.add("modal_opened");
+  openPopup(previewElement);
+  // previewElement.classList.add("modal_opened");
 }
 // const card = new Card(cardData, cardSelector, handlePreviewPicture);
+
+function createCard(cardData) {
+  const cardSelector = "#card-template";
+  const card = new Card(cardData, cardSelector, handlePreviewPicture);
+  return card.getView();
+}
 
 /*event listeners 1*/
 
