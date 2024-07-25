@@ -1,68 +1,25 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const profileForm = document.querySelector(
-    "#profile-edit-modal .modal__form"
-  );
-  const newCardForm = document.querySelector("#profile-add-modal .modal__form");
+// document.addEventListener("DOMContentLoaded", () => {
+const profileForm = document.querySelector("#profile-edit-modal .modal__form");
+const newCardForm = document.querySelector("#profile-add-modal .modal__form");
 
-  const validationConfig = {
-    inputSelector: ".modal__form-input",
-    submitButtonSelector: ".modal__button",
-    inactiveButtonClass: "modal__button_disabled",
-    inputErrorClass: "modal__input_type_error",
-    errorClass: "modal__error_visible",
-  };
+const validationConfig = {
+  inputSelector: ".modal__form-input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
 
-  // Create instances of FormValidator for each form
-  const profileFormValidator = new FormValidator(validationConfig, profileForm);
-  const newCardFormValidator = new FormValidator(validationConfig, newCardForm);
+// Create instances of FormValidator for each form
+const profileFormValidator = new FormValidator(validationConfig, profileForm);
+const newCardFormValidator = new FormValidator(validationConfig, newCardForm);
 
-  // Create instances of FormValidator for each form
-  // const profileFormValidator = new FormValidator(
-  //   {
-  //     inputSelector: ".modal__form-input",
-  //     submitButtonSelector: ".modal__button",
-  //     inactiveButtonClass: "modal__button_disabled",
-  //     inputErrorClass: "modal__input_type_error",
-  //     errorClass: "modal__error_visible",
-  //   },
-  //   profileForm
-  // );
-
-  // const newCardFormValidator = new FormValidator(
-  //   {
-  //     inputSelector: ".modal__form-input",
-  //     submitButtonSelector: ".modal__button",
-  //     inactiveButtonClass: "modal__button_disabled",
-  //     inputErrorClass: "modal__input_type_error",
-  //     errorClass: "modal__error_visible",
-  //   },
-  //   newCardForm
-  // );
-
-  // Enable validation for both forms
-  profileFormValidator.enableValidation();
-  newCardFormValidator.enableValidation();
-});
-//   const formElements = document.querySelectorAll(".modal__form");
-
-//   formElements.forEach((form) => {
-//     const formValidator = new FormValidator(
-//       {
-//         inputSelector: ".modal__form-input",
-//         submitButtonSelector: ".modal__button",
-//         inactiveButtonClass: "modal__button_disabled",
-//         inputErrorClass: "modal__input_type_error",
-//         errorClass: "modal__error_visible",
-//       },
-//       form
-//     );
-
-//     formValidator.enableValidation();
-//   });
-// });
+// Enable validation for both forms
+profileFormValidator.enableValidation();
+newCardFormValidator.enableValidation();
 
 //new from git
 const initialCards = [
@@ -199,9 +156,9 @@ function handleAddCardFormSubmit(e) {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
-  e.target.reset();
   newCardFormValidator.toggleButtonState();
   closePopup(addCardModal);
+  e.target.reset();
 }
 addCardModal.addEventListener("submit", handleAddCardFormSubmit);
 

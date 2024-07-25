@@ -65,7 +65,7 @@ export default class FormValidator {
     });
     this._formEl.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this.toggleButtonState();
+      // this.toggleButtonState();
     });
   }
 
