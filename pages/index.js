@@ -200,8 +200,10 @@ function handleAddCardFormSubmit(e) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
   e.target.reset();
+  newCardFormValidator.toggleButtonState();
   closePopup(addCardModal);
 }
+addCardModal.addEventListener("submit", handleAddCardFormSubmit);
 
 function handlePreviewPicture(name, link) {
   console.log("handlePreviewPicture called with:", name, link);

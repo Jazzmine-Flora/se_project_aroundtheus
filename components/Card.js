@@ -50,4 +50,7 @@ export default class Card {
       .content.querySelector(".card")
       .cloneNode(true);
   }
+
+  // e.target.reset();
+  // newCardFormValidator.toggleButtonState();
 }
