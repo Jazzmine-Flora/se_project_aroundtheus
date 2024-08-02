@@ -5,6 +5,7 @@ import PopupWithForm from "./PopupWithForm.js";
 import Section from "./Section.js";
 import PopupWithImages from "./PopupWithImages.js";
 import Popup from "./popup.js";
+import UserInfo from "../../Userinfo/UserInfo.js";
 
 // document.addEventListener("DOMContentLoaded", () => {
 const profileForm = document.querySelector("#profile-edit-modal .modal__form");
@@ -161,10 +162,12 @@ previewCloseButton.addEventListener("click", () => {
 
 function handleProfileEditSubmit(e) {
   e.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
+  const name = profileTitleInput.value;
+  const job = profileDescriptionInput.value;
   closePopup(profileEditModal);
 }
+
+profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 function handleAddCardFormSubmit(e) {
   e.preventDefault();
@@ -233,6 +236,14 @@ const section = new Section(
 );
 
 section.renderItems();
+
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__description",
+});
+
+const userData = userInfo.getUserInfo();
+console.log(userData);
 
 /*----*/
 
