@@ -1,5 +1,6 @@
-import Card from "../components/Card.js";
-import FormValidator from "../components/FormValidator.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import "../pages/index.css";
 
 // document.addEventListener("DOMContentLoaded", () => {
 const profileForm = document.querySelector("#profile-edit-modal .modal__form");
@@ -53,6 +54,18 @@ const cardData = {
   name: "Yosemite Valley",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
+
+// const newCardPopup = new newCardForm("#profile-add-modal", () => {});
+// newCardPopup.open();
+// newCardPopup.close();
+
+// const profilePopup = new profileForm("#profile-edit-modal", () => {});
+// profilePopup.open();
+// profilePopup.close();
+
+// const previewPopup = new Popup({ popupSelector: "#preview_image_modal" });
+// previewPopup.open();
+// previewPopup.close();
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");

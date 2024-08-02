@@ -5,21 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Around the US</title>
-    <link href="./pages/index.css" rel="stylesheet" />
+    <!-- <link href="./pages/index.css" rel="stylesheet" /> -->
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
           class="header__image"
-          src="./images/logo.svg"
+          src="<%=require('./images/logo.svg')%>"
           alt="Around the U.S logo"
         />
       </header>
 
       <main class="content">
         <section class="profile page__section">
-          <img src="./images/Avatar.svg" alt="Avatar" class="profile__image" />
+          <img
+            src="<%=require('./images/Avatar.svg')%>"
+            alt="Avatar"
+            class="profile__image"
+          />
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -157,7 +161,7 @@
       </div>
     </div>
 
-    <script type="module" src="./pages/index.js"></script>
+    <!-- <script type="module" src="./pages/index.js"></script> -->
     <!-- <script src=""></script> -->
   </body>
 </html>
