@@ -1,11 +1,11 @@
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import Card from "./components/Card.js";
+import FormValidator from "./components/FormValidator.js";
 import "../pages/index.css";
-import PopupWithForm from "./PopupWithForm.js";
-import Section from "./Section.js";
+import PopupWithForm from "./components/PopupWithForm.js";
+import Section from "./components/Section.js";
 import PopupWithImages from "./PopupWithImages.js";
-import Popup from "./popup.js";
-import UserInfo from "../../Userinfo/UserInfo.js";
+import Popup from "./components/popup.js";
+import UserInfo from "./components/UserInfo.js";
 
 // document.addEventListener("DOMContentLoaded", () => {
 const profileForm = document.querySelector("#profile-edit-modal .modal__form");
