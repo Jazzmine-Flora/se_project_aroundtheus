@@ -1,6 +1,10 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import "../pages/index.css";
+import PopupWithForm from "./PopupWithForm.js";
+import Section from "./Section.js";
+import PopupWithImages from "./PopupWithImages.js";
+import Popup from "./popup.js";
 
 // document.addEventListener("DOMContentLoaded", () => {
 const profileForm = document.querySelector("#profile-edit-modal .modal__form");
@@ -55,17 +59,11 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
 
-// const newCardPopup = new newCardForm("#profile-add-modal", () => {});
-// newCardPopup.open();
-// newCardPopup.close();
-
-// const profilePopup = new profileForm("#profile-edit-modal", () => {});
-// profilePopup.open();
-// profilePopup.close();
-
-// const previewPopup = new Popup({ popupSelector: "#preview_image_modal" });
-// previewPopup.open();
-// previewPopup.close();
+const newCardPopup = new PopupWithForm("#profile-add-modal", () => {});
+newCardPopup.open();
+newCardPopup.close();
+const popupWithImage = new PopupWithImages("#preview_image_modal");
+popupWithImage.setEventListeners();
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -148,6 +146,10 @@ function renderCard(cardData, cardListEl) {
   const cardElement = createCard(cardData);
 
   cardListEl.prepend(cardElement);
+  const cardImageElement = cardElement.querySelector(".card__image");
+  cardImageElement.addEventListener("click", () => {
+    handleCardClick(cardData.name, cardData.link);
+  });
 }
 
 /*---*/
@@ -217,18 +219,21 @@ addCardModalCloseButton.addEventListener("click", () =>
   closePopup(addCardModal)
 );
 
+const handleCardClick = (name, link) => {
+  popupWithImage.open({ name, link });
+};
+
+const renderer = (cardData) => {
+  const cardElement = createCard(cardData);
+  section.addItem(cardElement);
+};
+const section = new Section(
+  { items: initialCards, renderer: renderer },
+  ".cards__list"
+);
+
+section.renderItems();
+
 /*----*/
 
 initialCards.forEach((item) => renderCard(item, cardListEl));
-
-// function handleSubmit(evt, formValidator) {
-//   evt.preventDefault();
-//   // Your form submission logic
-//   formValidator.toggleButtonState();
-// }
-
-// const addCardForm = document.querySelector(".modal__form");
-
-// addCardForm.addEventListener("submit", (evt) =>
-//   handleSubmit(evt, newCardFormValidator)
-// );
