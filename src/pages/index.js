@@ -26,89 +26,6 @@ const newCardFormValidator = new FormValidator(validationConfig, newCardForm);
 profileFormValidator.enableValidation();
 newCardFormValidator.enableValidation();
 
-//new from git
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
-
-const cardData = {
-  name: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-};
-
-const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  jobSelector: ".profile__description",
-});
-
-const handleProfileFormSubmit = (formData) => {
-  userInfo.setUserInfo(formData.name, formData.description);
-};
-
-const handleAddCardFormSubmit = (data) => {
-  const cardElement = createCard(data);
-  section.addItem(cardElement);
-};
-
-const editProfilePopup = new PopupWithForm({
-  popupSelector: "#profile-edit-modal",
-  handleFormSubmit: handleProfileFormSubmit,
-});
-
-editProfilePopup.setEventListeners();
-profileEditButton.addEventListener("click", () => {
-  const userData = userInfo.getUserInfo();
-  profileTitleInput.value = userData.name;
-  profileDescriptionInput.value = userData.job;
-  editProfilePopup.open();
-});
-
-const newCardPopup = new PopupWithForm({
-  popupSelector: "#profile-add-modal",
-  handleFormSubmit: handleAddCardFormSubmit,
-});
-newCardPopup.setEventListeners();
-
-const popupWithImage = new PopupWithImages("#preview_image_modal");
-popupWithImage.setEventListeners();
-
-const section = new Section(
-  {
-    items: initialCards,
-    renderer: (cardData) => {
-      const cardElement = createCard(cardData);
-      section.addItem(cardElement);
-    },
-  },
-  ".cards__list"
-);
-
-section.renderItems();
-profileEditButton.addEventListener("click", () => newCardPopup.open());
-
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#profile-add-modal");
@@ -148,10 +65,88 @@ const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__description",
+});
+
+const handleProfileFormSubmit = (formData) => {
+  userInfo.setUserInfo(formData.name, formData.description);
+};
+
+const handleAddCardFormSubmit = (data) => {
+  const cardElement = createCard(data);
+  section.addItem(cardElement);
+};
+
+const editProfilePopup = new PopupWithForm(
+  "#profile-edit-modal",
+  handleProfileFormSubmit
+);
+editProfilePopup.setEventListeners();
+
+const newCardPopup = new PopupWithForm(
+  "#profile-add-modal",
+  handleAddCardFormSubmit
+);
+newCardPopup.setEventListeners();
+
+const popupWithImage = new PopupWithImages("#preview_image_modal");
+popupWithImage.setEventListeners();
+
 const modals = [addCardModal, profileEditModal, previewImageModal];
 modals.forEach((modal) => {
   modal.addEventListener("click", closePopupByOverlay);
 });
+
+profileEditButton.addEventListener("click", () => {
+  const userData = userInfo.getUserInfo();
+  profileTitleInput.value = userData.name;
+  profileDescriptionInput.value = userData.job;
+  editProfilePopup.open();
+});
+
+//new from git
+const initialCards = [
+  {
+    name: "Yosemite Valley",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+  },
+  {
+    name: "Lake Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+  },
+  {
+    name: "Bald Mountains",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+  },
+  {
+    name: "Vanoise National Park",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+  },
+];
+
+const cardData = {
+  name: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+};
+
+profileEditButton.addEventListener("click", () => {
+  const userData = userInfo.getUserInfo();
+  profileTitleInput.value = userData.name;
+  profileDescriptionInput.value = userData.job;
+  editProfilePopup.open();
+});
+
+profileEditButton.addEventListener("click", () => newCardPopup.open());
 
 function closePopupByPressingESC(evt) {
   if (evt.key === "Escape" || evt.keyCode === 27) {
@@ -181,11 +176,7 @@ function openPopup(modal) {
 }
 
 function renderCard(cardData, cardListEl) {
-  // const cardSelector = "#card-template";
-  // const card = new Card(cardData, cardSelector, handlePreviewPicture);
-  //
   const cardElement = createCard(cardData);
-
   cardListEl.prepend(cardElement);
   const cardImageElement = cardElement.querySelector(".card__image");
   cardImageElement.addEventListener("click", () => {
@@ -200,31 +191,6 @@ previewCloseButton.addEventListener("click", () => {
 });
 /*event handlers*/
 
-// function handleProfileEditSubmit(e) {
-//   e.preventDefault();
-//   const name = profileTitleInput.value;
-//   const job = profileDescriptionInput.value;
-//   closePopup(profileEditModal);
-// }
-
-profileEditForm.addEventListener("submit", handleProfileEditSubmit);
-
-// function handleAddCardFormSubmit(e) {
-//   e.preventDefault();
-//   const name = cardTitleInput.value;
-//   const link = cardUrlInput.value;
-//   renderCard({ name, link }, cardListEl);
-//   e.target.reset();
-//   newCardFormValidator.toggleButtonState();
-//   closePopup(addCardModal);
-// }
-// addCardModal.addEventListener("submit", handleAddCardFormSubmit);
-
-// const handleAddCardFormSubmit = (data) => {
-//   const cardElement = createCard(data);
-//   section.addItem(cardElement);
-// };
-
 function handlePreviewPicture(name, link) {
   console.log("handlePreviewPicture called with:", name, link);
   const previewImage = document.querySelector("#preview-image");
@@ -237,30 +203,22 @@ function handlePreviewPicture(name, link) {
 
   previewImageDescription.textContent = name;
   openPopup(previewElement);
-  // previewElement.classList.add("modal_opened");
 }
 
 function createCard(cardData) {
-  const card = new Card(cardData, ".card-template", handleCardClick);
+  const card = new Card(cardData, "#card-template", handleCardClick);
   return card.getView();
 }
 
 /*event listeners 1*/
 
-profileEditButton.addEventListener("click", () => {
-  const userData = userInfo.getUserInfo();
-  profileTitleInput.value = userData.name;
-  profileDescriptionInput.value = userData.job;
-  editProfilePopup.open();
-});
-
-// profileEditButton.addEventListener("click", () => newCardPopup.open());
-
 profileModalCloseButton.addEventListener("click", () =>
   closePopup(profileEditModal)
 );
-profileEditModal.addEventListener("submit", handleProfileEditSubmit);
+profileEditModal.addEventListener("submit", handleProfileFormSubmit);
 addCardModal.addEventListener("submit", handleAddCardFormSubmit);
+
+profileEditButton.addEventListener("click", () => newCardPopup.open());
 
 /*new code P5*/
 addNewCardButton.addEventListener("click", () => openPopup(addCardModal));
@@ -268,40 +226,29 @@ addCardModalCloseButton.addEventListener("click", () =>
   closePopup(addCardModal)
 );
 
-//
-function handleCardClick(name, link) {
-  popupWithImage.open(name, link);
-}
-
 const renderer = (cardData) => {
   const cardElement = createCard(cardData);
   section.addItem(cardElement);
 };
-// const section = new Section(
-//   {
-//     items: initialCards,
-//     renderer: (cardData) => {
-//       const cardElement = createCard(cardData);
-//       section.addItem(cardElement);
-//     },
-//   },
-//   ".cards__list"
-// );
 
-// section.renderItems();
-
-// const userInfo = new UserInfo({
-//   nameSelector: ".profile__title",
-//   jobSelector: ".profile__description",
-// });
+const section = new Section(
+  {
+    items: initialCards,
+    renderer: (cardData) => {
+      const cardElement = createCard(cardData);
+      section.addItem(cardElement);
+    },
+  },
+  ".cards__list"
+);
+section.renderItems();
 
 const userData = userInfo.getUserInfo();
 console.log(userData);
 
-// const handleProfileFormSubmit = (formData) => {
-//   userInfo.setUserInfo(formData.name, formData.description);
-// };
-
+function handleCardClick(name, link) {
+  popupWithImage.open(name, link);
+}
 /*----*/
 
 initialCards.forEach((item) => renderCard(item, cardListEl));

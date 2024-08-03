@@ -45,11 +45,37 @@ export default class Card {
   }
 
   _getTemplate() {
-    return document
-      .querySelector(this._cardSelector)
-      .content.querySelector(".card")
-      .cloneNode(true);
+    console.log("Template selector:", this._cardSelector); // Added log
+    const templateElement = document.querySelector(this._cardSelector);
+    console.log("Template element:", templateElement); // Added log
+
+    if (templateElement) {
+      const cardElement = templateElement.content
+        .querySelector(".card")
+        .cloneNode(true);
+      return cardElement;
+    } else {
+      throw new Error(
+        `Template element with selector ${this._cardSelector} not found.`
+      );
+    }
   }
+
+  // _getTemplate() {
+  //   const cardElement = document
+  //     .querySelector(this._cardSelector)
+  //     .content.querySelector(".card")
+  //     .cloneNode(true);
+
+  //   return cardElement;
+  // }
+
+  // _getTemplate() {
+  //   return document
+  //     .querySelector(this._cardSelector)
+  //     .content.querySelector(".card")
+  //     .cloneNode(true);
+  // }
 
   // e.target.reset();
   // newCardFormValidator.toggleButtonState();
