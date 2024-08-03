@@ -78,11 +78,11 @@ const userInfo = new UserInfo({
 });
 
 const handleProfileFormSubmit = (formData) => {
-  userInfo.setUserInfo(formData.name, formData.description);
+  userInfo.setUserInfo({ name: formData.title, job: formData.description });
 };
 
 const handleAddCardFormSubmit = (data) => {
-  const cardElement = createCard(data);
+  const cardElement = createCard({ name: data.title, link: data.url });
   section.addItem(cardElement);
 };
 
@@ -226,8 +226,8 @@ function createCard(cardData) {
 profileModalCloseButton.addEventListener("click", () =>
   closePopup(profileEditModal)
 );
-profileEditModal.addEventListener("submit", handleProfileFormSubmit);
-addCardModal.addEventListener("submit", handleAddCardFormSubmit);
+profileEditModal.addEventListener("", handleProfileFormSubmit);
+addCardModal.addEventListener("", handleAddCardFormSubmit);
 
 profileEditButton.addEventListener("click", () => newCardPopup.open());
 
