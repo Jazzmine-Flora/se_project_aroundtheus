@@ -182,10 +182,10 @@ function openPopup(modal) {
 function renderCard(cardData, cardListEl) {
   const cardElement = createCard(cardData);
   cardListEl.prepend(cardElement);
-  const cardImageElement = cardElement.querySelector(".card__image");
-  cardImageElement.addEventListener("click", () => {
-    handleCardClick(cardData.name, cardData.link);
-  });
+  // const cardImageElement = cardElement.querySelector(".card__image");
+  // cardImageElement.addEventListener("click", () => {
+  //   handleCardClick(cardData.name, cardData.link);
+  // });
 }
 
 /*---*/
@@ -251,7 +251,7 @@ const userData = userInfo.getUserInfo();
 console.log(userData);
 
 function handleCardClick(name, link) {
-  popupWithImage.open(name, link);
+  popupWithImage.open({ name, link });
 }
 /*----*/
 
