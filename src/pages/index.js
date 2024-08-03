@@ -65,6 +65,13 @@ const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
+const closeAllModals = () => {
+  const modals = document.querySelectorAll(".modal");
+  modals.forEach((modal) => {
+    modal.classList.remove("modal_opened");
+  });
+};
+
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
   jobSelector: ".profile__description",
@@ -100,10 +107,16 @@ modals.forEach((modal) => {
 });
 
 profileEditButton.addEventListener("click", () => {
+  closeAllModals();
   const userData = userInfo.getUserInfo();
   profileTitleInput.value = userData.name;
   profileDescriptionInput.value = userData.job;
   editProfilePopup.open();
+});
+
+addNewCardButton.addEventListener("click", () => {
+  closeAllModals(); // Ensure all other modals are closed
+  newCardPopup.open();
 });
 
 //new from git
