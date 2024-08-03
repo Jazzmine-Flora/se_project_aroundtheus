@@ -152,13 +152,6 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
 
-// profileEditButton.addEventListener("click", () => {
-//   const userData = userInfo.getUserInfo();
-//   profileTitleInput.value = userData.name;
-//   profileDescriptionInput.value = userData.job;
-//   editProfilePopup.open();
-// });
-
 function closePopupByPressingESC(evt) {
   if (evt.key === "Escape" || evt.keyCode === 27) {
     const openedModal = document.querySelector(".modal_opened");
@@ -229,7 +222,7 @@ profileModalCloseButton.addEventListener("click", () =>
 profileEditModal.addEventListener("", handleProfileFormSubmit);
 addCardModal.addEventListener("", handleAddCardFormSubmit);
 
-profileEditButton.addEventListener("click", () => newCardPopup.open());
+// profileEditButton.addEventListener("click", () => newCardPopup.open());
 
 /*new code P5*/
 addNewCardButton.addEventListener("click", () => openPopup(addCardModal));
