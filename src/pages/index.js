@@ -152,14 +152,12 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
 
-profileEditButton.addEventListener("click", () => {
-  const userData = userInfo.getUserInfo();
-  profileTitleInput.value = userData.name;
-  profileDescriptionInput.value = userData.job;
-  editProfilePopup.open();
-});
-
-profileEditButton.addEventListener("click", () => newCardPopup.open());
+// profileEditButton.addEventListener("click", () => {
+//   const userData = userInfo.getUserInfo();
+//   profileTitleInput.value = userData.name;
+//   profileDescriptionInput.value = userData.job;
+//   editProfilePopup.open();
+// });
 
 function closePopupByPressingESC(evt) {
   if (evt.key === "Escape" || evt.keyCode === 27) {
