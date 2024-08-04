@@ -4,7 +4,7 @@ import "../pages/index.css";
 import PopupWithForm from "../components/PopupWithForm.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImages.js";
-import Popup from "../components/popup.js";
+import Popup from "../components/Popup.js";
 import UserInfo from "../components/UserInfo.js";
 import {
   initialCards,
@@ -72,8 +72,7 @@ addNewCardButton.addEventListener("click", () => {
 });
 
 function renderCard(cardData, cardListEl) {
-  const cardElement = createCard(cardData);
-  cardListEl.prepend(cardElement);
+  section.renderItems();
 }
 
 /*---*/
@@ -97,12 +96,6 @@ const section = new Section(
 );
 section.renderItems();
 
-const userData = userInfo.getUserInfo();
-console.log(userData);
-
 function handleCardClick(name, link) {
   popupWithImage.open({ name, link });
 }
-/*----*/
-
-initialCards.forEach((item) => renderCard(item, cardListEl));

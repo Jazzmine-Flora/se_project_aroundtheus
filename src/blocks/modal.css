@@ -205,7 +205,7 @@
   .modal__container {
     max-width: 95%;
     height: 322px;
-    padding: 10px;
+    /* padding: 10px; */
   }
 
   /* .input-container {
