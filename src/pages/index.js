@@ -4,7 +4,7 @@ import "../pages/index.css";
 import PopupWithForm from "../components/PopupWithForm.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImages.js";
-import Popup from "../components/Popup.js";
+import Popup from "../components/POPUP.js";
 import UserInfo from "../components/UserInfo.js";
 import {
   initialCards,
