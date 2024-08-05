@@ -60,23 +60,4 @@ export default class Card {
       );
     }
   }
-
-  // _getTemplate() {
-  //   const cardElement = document
-  //     .querySelector(this._cardSelector)
-  //     .content.querySelector(".card")
-  //     .cloneNode(true);
-
-  //   return cardElement;
-  // }
-
-  // _getTemplate() {
-  //   return document
-  //     .querySelector(this._cardSelector)
-  //     .content.querySelector(".card")
-  //     .cloneNode(true);
-  // }
-
-  // e.target.reset();
-  // newCardFormValidator.toggleButtonState();
 }

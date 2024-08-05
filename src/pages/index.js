@@ -4,7 +4,7 @@ import "../pages/index.css";
 import PopupWithForm from "../components/PopupWithForm.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImages.js";
-import Popup from "../components/POPUP.js";
+import Popup from "../components/Popup.js";
 import UserInfo from "../components/UserInfo.js";
 import {
   initialCards,
@@ -30,6 +30,9 @@ const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 const cardListEl = document.querySelector(".cards__list");
+// export const profileForm = document.querySelector(
+//   "#profile-edit-modal .modal__form"
+// );
 
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
@@ -38,11 +41,15 @@ const userInfo = new UserInfo({
 
 const handleProfileFormSubmit = (formData) => {
   userInfo.setUserInfo({ name: formData.title, job: formData.description });
+  editProfilePopup.close();
+  profileForm.reset();
 };
 
 const handleAddCardFormSubmit = (data) => {
   const cardElement = createCard({ name: data.title, link: data.url });
   section.addItem(cardElement);
+  newCardForm.reset();
+  newCardPopup.close();
 };
 
 const editProfilePopup = new PopupWithForm(
@@ -64,6 +71,7 @@ profileEditButton.addEventListener("click", () => {
   const userData = userInfo.getUserInfo();
   profileTitleInput.value = userData.name;
   profileDescriptionInput.value = userData.job;
+
   editProfilePopup.open();
 });
 
