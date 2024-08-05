@@ -41,15 +41,16 @@ const userInfo = new UserInfo({
 
 const handleProfileFormSubmit = (formData) => {
   userInfo.setUserInfo({ name: formData.title, job: formData.description });
-  editProfilePopup.close();
   profileForm.reset();
+  editProfilePopup.close();
 };
 
 const handleAddCardFormSubmit = (data) => {
-  const cardElement = createCard({ name: data.title, link: data.url });
-  section.addItem(cardElement);
+  const cardElement = renderCard({ name: data.title, link: data.url });
+  // section.addItem(cardElement);
   newCardForm.reset();
   newCardPopup.close();
+  newCardFormValidator.toggleButtonState();
 };
 
 const editProfilePopup = new PopupWithForm(
@@ -80,7 +81,10 @@ addNewCardButton.addEventListener("click", () => {
 });
 
 function renderCard(cardData, cardListEl) {
-  section.renderItems();
+  const cardElement = createCard(cardData);
+  section.addItem(cardElement);
+  // section.addItem(cardElement);
+  // section.renderItems();
 }
 
 /*---*/
@@ -91,13 +95,14 @@ function createCard(cardData) {
 }
 
 /*event listeners 1*/
-
+// const cardElement = renderCard({ name: data.title, link: data.url });
 const section = new Section(
   {
     items: initialCards,
     renderer: (cardData) => {
-      const cardElement = createCard(cardData);
-      section.addItem(cardElement);
+      renderCard(cardData);
+      // const cardElement = createCard(cardData);
+      // section.addItem(cardElement);
     },
   },
   ".cards__list"
