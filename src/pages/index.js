@@ -46,8 +46,7 @@ const handleProfileFormSubmit = (formData) => {
 };
 
 const handleAddCardFormSubmit = (data) => {
-  const cardElement = renderCard({ name: data.title, link: data.url });
-  // section.addItem(cardElement);
+  renderCard({ name: data.title, link: data.url });
   newCardForm.reset();
   newCardPopup.close();
   newCardFormValidator.toggleButtonState();
