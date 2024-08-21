@@ -45,7 +45,7 @@ const api = new Api({
   },
 });
 
-let Section;
+let section;
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cardData]) => {
@@ -91,6 +91,15 @@ api
     }
   })
   .catch((err) => console.log("Error loading cards:", err));
+
+api
+  .getUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo(userData);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const handleProfileFormSubmit = (formData) => {
   userInfo.setUserInfo({ name: formData.title, job: formData.description });

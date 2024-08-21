@@ -108,6 +108,18 @@
   height: 330px;
 }
 
+.modal__container_delete {
+  background-color: white;
+  margin: auto;
+  border-radius: 10px;
+  color: black;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 430px;
+  height: 182px;
+}
+
 .modal_container_preview {
   border-radius: 8px;
   margin: auto;
