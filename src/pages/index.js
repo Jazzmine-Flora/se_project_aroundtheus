@@ -23,7 +23,7 @@ import {
 } from "../utils/constants.js";
 
 const profileEditButton = document.querySelector("#profile-edit-button");
-// //
+
 // /*new code p5*/
 const addNewCardButton = document.querySelector(".profile__add-button");
 const profileTitleInput = document.querySelector("#profile-title-input");
@@ -31,9 +31,6 @@ const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 const cardListEl = document.querySelector(".cards__list");
-// export const profileForm = document.querySelector(
-//   "#profile-edit-modal .modal__form"
-// );
 
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
@@ -47,6 +44,26 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
+
+// api;
+
+// Promise.all([api.getUserInfo(), api.getInitialCards()])
+//   .then(([userData, cardData]) => {
+//     userInfo.setUserInfo(userData);
+//     section = new Section(
+//       {
+//         items: cardData,
+//         renderer: (cardData) => {
+//           renderCard(cardData);
+//         },
+//       },
+//       cardListEl
+//     );
+//     section.renderItems();
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 const handleProfileFormSubmit = (formData) => {
   userInfo.setUserInfo({ name: formData.title, job: formData.description });

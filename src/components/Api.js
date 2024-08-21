@@ -1,87 +1,97 @@
 export default class Api {
-  constructor(projectUrl, headers) {
-    this._projectUrl = projectUrl;
+  constructor(baseUrl, headers) {
+    this._baseUrl = baseUrl;
     this._headers = headers;
     // constructor body
   }
 
-  getInitialCards() {
-    return fetch(`${this._projectUrl}/cards`, {
-      method: "GET",
-      headers: this._headers,
-    })
-      .then((res) => res.json())
-      .catch((err) => {
-        console.log(err);
+  async getInitialCards() {
+    try {
+      const res = await fetch(`${this._baseUrl}/cards`, {
+        method: "GET",
+        headers: this._headers,
       });
+      return await res.json();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  getUserInfo() {
-    return fetch(`${this._projectUrl}/users/me`, {
-      method: "GET",
-      headers: this._headers,
-    })
-      .then((res) => res.json())
-      .catch((err) => {
-        console.log(err);
+  async getUserInfo() {
+    try {
+      const res = await fetch(`${this._baseUrl}/users/me`, {
+        method: "GET",
+        headers: this._headers,
       });
+      return await res.json();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  setUserInfo(data) {
-    return fetch(`${this._projectUrl}/users/me`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .catch((err) => {
-        console.log(err);
+  async setUserInfo(name, about) {
+    try {
+      const res = await fetch(`${this._baseUrl}/users/me`, {
+        method: "PATCH",
+        headers: this._headers,
+        body: JSON.stringify({
+          name: name,
+          about: about,
+        }),
       });
+      return await res.json();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  addCard(data) {
-    return fetch(`${this._projectUrl}/cards`, {
-      method: "POST",
-      headers: this._headers,
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .catch((err) => {
-        console.log(err);
+  async addCard(name, link) {
+    try {
+      const res = await fetch(`${this._baseUrl}/cards`, {
+        method: "POST",
+        headers: this._headers,
+        body: JSON.stringify({ name, link }),
       });
+      return await res.json();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  deleteCard(cardId) {
-    return fetch(`${this._projectUrl}/cards/${cardId}`, {
-      method: "DELETE",
-      headers: this._headers,
-    })
-      .then((res) => res.json())
-      .catch((err) => {
-        console.log(err);
+  async deleteCard(cardId) {
+    try {
+      const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
+        method: "DELETE",
+        headers: this._headers,
       });
+      return await res.json();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  addLike(cardId) {
-    return fetch(`${this._projectUrl}/cards/likes/${cardId}`, {
-      method: "PUT",
-      headers: this._headers,
-    })
-      .then((res) => res.json())
-      .catch((err) => {
-        console.log(err);
+  async addLike(cardId) {
+    try {
+      const res = await fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+        method: "PUT",
+        headers: this._headers,
       });
+      return await res.json();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  removeLike(cardId) {
-    return fetch(`${this._projectUrl}/cards/likes/${cardId}`, {
-      method: "DELETE",
-      headers: this._headers,
-    })
-      .then((res) => res.json())
-      .catch((err) => {
-        console.log(err);
+  async removeLike(cardId) {
+    try {
+      const res = await fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+        method: "DELETE",
+        headers: this._headers,
       });
+      return await res.json();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   changeLikeCardStatus(cardId, isLiked) {
@@ -92,16 +102,19 @@ export default class Api {
     }
   }
 
-  updateAvatar(data) {
-    return fetch(`${this._projectUrl}/users/me/avatar`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .catch((err) => {
-        console.log(err);
+  async updateAvatar(link) {
+    try {
+      const res = await fetch(`${this._baseUrl}/users/me/avatar`, {
+        method: "PATCH",
+        headers: this._headers,
+        body: JSON.stringify({
+          avatar: link,
+        }),
       });
+      return await res.json();
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 
