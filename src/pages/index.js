@@ -5,6 +5,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImages.js";
 import Popup from "../components/Popup.js";
+import Api from "../components/Api.js";
 import UserInfo from "../components/UserInfo.js";
 import {
   initialCards,
@@ -37,6 +38,14 @@ const cardListEl = document.querySelector(".cards__list");
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
   jobSelector: ".profile__description",
+});
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "dd59f422-ba26-4124-9867-97b1d68768e4",
+    "Content-Type": "application/json",
+  },
 });
 
 const handleProfileFormSubmit = (formData) => {
