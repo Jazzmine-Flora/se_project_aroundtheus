@@ -45,25 +45,52 @@ const api = new Api({
   },
 });
 
-// api;
+let Section;
 
-// Promise.all([api.getUserInfo(), api.getInitialCards()])
-//   .then(([userData, cardData]) => {
-//     userInfo.setUserInfo(userData);
-//     section = new Section(
-//       {
-//         items: cardData,
-//         renderer: (cardData) => {
-//           renderCard(cardData);
-//         },
-//       },
-//       cardListEl
-//     );
-//     section.renderItems();
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cardData]) => {
+    userInfo.setUserInfo(userData);
+    Section = new Section(
+      {
+        items: cardData,
+        renderer: (cardData) => {
+          renderCard(cardData);
+        },
+      },
+      ".cards__list"
+    );
+    Section.renderItems();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+// const cardSection = new Section(
+//   {
+//     items: initialCards,
+//     renderer: (cardData) => {
+//       renderCard(cardData);
+//     },
+//   },
+//   ".cards__list"
+// );
+// cardSection.renderItems();
+
+api
+  .getInitialCards()
+  .then((cardData) => {
+    if (cardData) {
+      Section = new Section(
+        {
+          items: cardData,
+          renderer: renderCard,
+        },
+        cardListEl
+      );
+      Section.renderItems();
+    }
+  })
+  .catch((err) => console.log("Error loading cards:", err));
 
 const handleProfileFormSubmit = (formData) => {
   userInfo.setUserInfo({ name: formData.title, job: formData.description });
@@ -107,9 +134,7 @@ addNewCardButton.addEventListener("click", () => {
 
 function renderCard(cardData, cardListEl) {
   const cardElement = createCard(cardData);
-  section.addItem(cardElement);
-  // section.addItem(cardElement);
-  // section.renderItems();
+  Section.addItem(cardElement);
 }
 
 /*---*/
@@ -120,19 +145,17 @@ function createCard(cardData) {
 }
 
 /*event listeners 1*/
-// const cardElement = renderCard({ name: data.title, link: data.url });
-const section = new Section(
-  {
-    items: initialCards,
-    renderer: (cardData) => {
-      renderCard(cardData);
-      // const cardElement = createCard(cardData);
-      // section.addItem(cardElement);
-    },
-  },
-  ".cards__list"
-);
-section.renderItems();
+
+// const section = new Section(
+//   {
+//     items: initialCards,
+//     renderer: (cardData) => {
+//       renderCard(cardData);
+//     },
+//   },
+//   ".cards__list"
+// );
+// section.renderItems();
 
 function handleCardClick(name, link) {
   popupWithImage.open({ name, link });
