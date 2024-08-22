@@ -15,11 +15,11 @@ export default class ConfirmPopup extends Popup {
 
   open(card) {
     this._card = card;
-    super.open(this._modal);
+    super.open(this._popupElement);
   }
 
   close() {
-    super.close(this._modal);
+    super.close(this._popupElement);
   }
 
   domDeleteCard() {
@@ -27,7 +27,9 @@ export default class ConfirmPopup extends Popup {
   }
 
   setLoadingConfirm(isLoading, text) {
-    const modalButton = this._modal.querySelector(".modal__button_delete");
+    const modalButton = this._popupElement.querySelector(
+      ".modal__button_delete"
+    );
     modalButton.textContent = isLoading ? text : "Save";
   }
 }
