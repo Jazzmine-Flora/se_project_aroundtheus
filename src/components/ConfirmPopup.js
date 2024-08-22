@@ -1,13 +1,13 @@
 import Popup from "./Popup.js";
 export default class ConfirmPopup extends Popup {
   constructor(popupSelector, handleFormSubmit) {
-    super(popupSelector);
+    super({ popupSelector });
     this._handleFormSubmit = handleFormSubmit;
   }
 
   setEventListeners() {
     super.setEventListeners();
-    this._popup.addEventListener("submit", (evt) => {
+    this._popupElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit();
     });
@@ -15,21 +15,19 @@ export default class ConfirmPopup extends Popup {
 
   open(card) {
     this._card = card;
-    super.open(this._popupElement);
+    super.open(this._popup);
   }
 
   close() {
-    super.close(this._popupElement);
+    super.close();
   }
 
-  domDeleteCard() {
-    this._card.domDeleteCard();
-  }
+  //   domDeleteCard() {
+  //     this._card.domDeleteCard();
+  //   }
 
   setLoadingConfirm(isLoading, text) {
-    const modalButton = this._popupElement.querySelector(
-      ".modal__button_delete"
-    );
+    const modalButton = this._popup.querySelector(".modal__button_delete");
     modalButton.textContent = isLoading ? text : "Save";
   }
 }
