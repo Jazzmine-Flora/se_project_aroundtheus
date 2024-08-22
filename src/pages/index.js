@@ -133,7 +133,7 @@ avatarImage.addEventListener("click", () => {
 
 // Delete card modal
 const deleteConfirmModal = new ConfirmPopup(
-  "#delete-check-modal",
+  "#delete-modal",
   handleCardDeleteSubmit
 );
 deleteConfirmModal.setEventListeners();
