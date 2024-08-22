@@ -15,6 +15,8 @@ export const validationConfig = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
+export const avatarEditModal = document.querySelector("#avatar-modal");
+export const avatarEditForm = avatarEditModal.querySelector("#avatar-form");
 
 // Create instances of FormValidator for each form
 export const profileFormValidator = new FormValidator(
@@ -26,9 +28,14 @@ export const newCardFormValidator = new FormValidator(
   newCardForm
 );
 
+export const avatarFormValidator = new FormValidator(
+  validationConfig,
+  avatarEditForm
+);
 // Enable validation for both forms
 profileFormValidator.enableValidation();
 newCardFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 export const profileEditButton = document.querySelector("#profile-edit-button");
 //

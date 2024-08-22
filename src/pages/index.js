@@ -7,12 +7,15 @@ import PopupWithImage from "../components/PopupWithImages.js";
 import Popup from "../components/Popup.js";
 import Api from "../components/Api.js";
 import UserInfo from "../components/UserInfo.js";
+import ConfirmPopup from "../components/ConfirmPopup.js";
 import {
   initialCards,
   profileForm,
   newCardForm,
+  avatarEditForm,
   profileFormValidator,
   newCardFormValidator,
+  avatarFormValidator,
   validationConfig,
   profileAddButton,
   addCardModal,
@@ -23,8 +26,9 @@ import {
 } from "../utils/constants.js";
 
 const profileEditButton = document.querySelector("#profile-edit-button");
+const avatarImage = document.querySelector(".edit_icon");
+const submitButtonSelector = document.querySelector(".modal__button");
 
-// /*new code p5*/
 const addNewCardButton = document.querySelector(".profile__add-button");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
@@ -40,7 +44,7 @@ const userInfo = new UserInfo({
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "dd59f422-ba26-4124-9867-97b1d68768e4",
+    authorization: "acb9f423-9227-4882-a1e0-a6492f6bb248",
     "Content-Type": "application/json",
   },
 });
@@ -50,7 +54,7 @@ let section;
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cardData]) => {
     userInfo.setUserInfo(userData);
-    Section = new Section(
+    section = new Section(
       {
         items: cardData,
         renderer: (cardData) => {
@@ -59,7 +63,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
       },
       ".cards__list"
     );
-    Section.renderItems();
+    section.renderItems();
   })
   .catch((err) => {
     console.log(err);
@@ -80,14 +84,14 @@ api
   .getInitialCards()
   .then((cardData) => {
     if (cardData) {
-      Section = new Section(
+      section = new Section(
         {
           items: cardData,
           renderer: renderCard,
         },
         cardListEl
       );
-      Section.renderItems();
+      section.renderItems();
     }
   })
   .catch((err) => console.log("Error loading cards:", err));
@@ -100,6 +104,55 @@ api
   .catch((err) => {
     console.log(err);
   });
+
+// avatar edit modal
+
+const avatarChangeModal = new PopupWithForm(
+  "#avatar-modal",
+  handleAvatarChangeSubmit
+);
+avatarChangeModal.setEventListeners();
+
+function handleAvatarChangeSubmit(Url) {
+  console.log(Url.avatar);
+  api.updateAvatar(Url.avatar).then((res) => {
+    console.log(res);
+  });
+  user.setAvatarPic(Url.avatar);
+  submitButton.textContent = "Saving";
+  avatarChangeModal.close();
+}
+
+avatarImage.addEventListener("click", () => {
+  submitButtonSelector.textContent = "Save";
+  avatarChangeModal.open();
+  avatarFormValidator.toggleButtonState();
+});
+
+// ----------------------------
+
+// Delete card modal
+const deleteConfirmModal = new ConfirmPopup(
+  "#delete-check-modal",
+  handleCardDeleteSubmit
+);
+deleteConfirmModal.setEventListeners();
+
+function handleDeleteClick(cardId) {
+  console.log(cardId);
+  deleteConfirmModal.open(cardId);
+}
+
+function handleCardDeleteSubmit(card) {
+  console.log(card._id);
+  api.deleteCard(card._id).then((message) => {
+    console.log(message);
+    card.domDeleteCard();
+    deleteConfirmModal.close();
+  });
+}
+
+// ----------------------------
 
 const handleProfileFormSubmit = (formData) => {
   userInfo.setUserInfo({ name: formData.title, job: formData.description });
@@ -143,7 +196,7 @@ addNewCardButton.addEventListener("click", () => {
 
 function renderCard(cardData, cardListEl) {
   const cardElement = createCard(cardData);
-  Section.addItem(cardElement);
+  section.addItem(cardElement);
 }
 
 /*---*/
@@ -169,3 +222,34 @@ function createCard(cardData) {
 function handleCardClick(name, link) {
   popupWithImage.open({ name, link });
 }
+
+// fetching user info
+async function getUserInfo() {
+  try {
+    const response = await fetch(
+      "https://around-api.en.tripleten-services.com/v1/users/me",
+      {
+        method: "GET",
+        headers: {
+          Authorization: "acb9f423-9227-4882-a1e0-a6492f6bb248",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+
+    const data = await response.json();
+    console.log(data);
+
+    // Update HTML elements based on the received data
+    document.querySelector(".name").textContent = data.name;
+    document.querySelector(".about").textContent = data.about;
+    document.querySelector(".avatar").src = data.avatar;
+  } catch (error) {
+    console.error("There has been a problem with your fetch operation:", error);
+  }
+}
+
+getUserInfo();

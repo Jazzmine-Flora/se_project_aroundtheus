@@ -5,6 +5,20 @@
   margin-bottom: 51px;
 }
 
+.edit_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+  margin-left: 45px;
+  margin-top: 10px;
+  cursor: pointer;
+  position: absolute;
+}
+
 .profile__info {
   display: grid;
   grid-template-areas: "title button" "discription discription";

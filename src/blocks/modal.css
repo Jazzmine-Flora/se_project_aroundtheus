@@ -107,6 +107,19 @@
   width: 430px;
   height: 330px;
 }
+.modal__container_avatar {
+  max-width: 430px;
+  height: 272px;
+}
+
+.modal__button_text {
+  font-size: 18px;
+  line-height: 22.63px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
 
 .modal__container_delete {
   background-color: white;
