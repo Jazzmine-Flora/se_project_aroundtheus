@@ -132,15 +132,47 @@ avatarImage.addEventListener("click", () => {
 // ----------------------------
 
 // Delete card modal
-const deleteConfirmModal = new ConfirmPopup(
-  "#delete-modal",
-  handleCardDeleteSubmit
-);
-deleteConfirmModal.setEventListeners();
 
-function handleDeleteClick(cardId) {
-  console.log(cardId);
-  deleteConfirmModal.open(cardId);
+// Get the delete modal element
+const deleteModal = document.querySelector("#delete-modal");
+const deleteModalCloseButton = document.querySelector("#delete-close-modal");
+const deleteConfirmForm = document.querySelector("#delete-confirm-form");
+
+let cardToDelete = null;
+
+// Add event listeners to open the modal when delete button is clicked
+document.querySelectorAll(".card__delete-button").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    deleteModal.style.display = "block";
+    cardToDelete = event.target.closest(".card");
+  });
+});
+
+// Add event listener to close the modal
+deleteModalCloseButton.addEventListener("click", () => {
+  deleteModal.style.display = "none";
+  cardToDelete = null;
+});
+
+deleteConfirmForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (cardToDelete) {
+    const cardId = cardToDelete._data.id;
+
+    handleDeleteClick(cardToDelete);
+    deleteModal.style.display = "none";
+    cardToDelete = null;
+  }
+});
+
+function handleDeleteClick(card) {
+  console.log(`Delete card with ID: ${card.id}`);
+  api.deleteCard(card.id).then((message) => {
+    console.log(message);
+    // card.domDeleteCard();
+    deleteModal.style.display = "none";
+  });
 }
 
 function handleCardDeleteSubmit(card) {
@@ -202,7 +234,12 @@ function renderCard(cardData, cardListEl) {
 /*---*/
 
 function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleCardClick);
+  const card = new Card(
+    cardData,
+    "#card-template",
+    handleCardClick,
+    handleDeleteClick
+  );
   return card.getView();
 }
 
