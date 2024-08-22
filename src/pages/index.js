@@ -137,6 +137,11 @@ avatarImage.addEventListener("click", () => {
 const deleteModal = document.querySelector("#delete-modal");
 const deleteModalCloseButton = document.querySelector("#delete-close-modal");
 const deleteConfirmForm = document.querySelector("#delete-confirm-form");
+const deleteConfirmModal = new ConfirmPopup(
+  "#delete-modal",
+  handleCardDeleteSubmit
+);
+deleteConfirmModal.setEventListeners();
 
 let cardToDelete = null;
 
@@ -167,19 +172,21 @@ deleteConfirmForm.addEventListener("submit", (event) => {
 });
 
 function handleDeleteClick(card) {
-  console.log(`Delete card with ID: ${card.id}`);
-  api.deleteCard(card.id).then((message) => {
-    console.log(message);
-    // card.domDeleteCard();
-    deleteModal.style.display = "none";
-  });
+  deleteConfirmModal.open(card);
 }
 
-function handleCardDeleteSubmit(card) {
-  console.log(card._id);
-  api.deleteCard(card._id).then((message) => {
+// function handleDeleteClick(card) {
+//   // console.log(`Delete card with ID: ${card.id}`);
+//   api.deleteCard(card).then((message) => {
+//     console.log(message);
+//     // card.domDeleteCard();
+//     deleteModal.style.display = "none";
+//   });
+// }
+
+function handleCardDeleteSubmit(cardId) {
+  api.deleteCard(cardId).then((message) => {
     console.log(message);
-    card.domDeleteCard();
     deleteConfirmModal.close();
   });
 }
