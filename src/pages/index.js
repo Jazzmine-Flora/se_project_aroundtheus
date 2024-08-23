@@ -96,6 +96,8 @@ api
   })
   .catch((err) => console.log("Error loading cards:", err));
 
+let user;
+
 api
   .getUserInfo()
   .then((userData) => {
@@ -113,21 +115,51 @@ const avatarChangeModal = new PopupWithForm(
 );
 avatarChangeModal.setEventListeners();
 
-function handleAvatarChangeSubmit(Url) {
-  console.log(Url.avatar);
-  api.updateAvatar(Url.avatar).then((res) => {
-    console.log(res);
-  });
-  user.setAvatarPic(Url.avatar);
-  submitButton.textContent = "Saving";
-  avatarChangeModal.close();
+function handleAvatarChangeSubmit(inputValues) {
+  const user = userInfo.getUserInfo();
+  const avatarUrl = inputValues.avatar;
+  console.log("Avatar URL:", avatarUrl);
+
+  if (avatarUrl) {
+    api
+      .updateAvatar(avatarUrl)
+      .then((updatedUser) => {
+        console.log("Updated user:", updatedUser);
+        user.avatar = updatedUser.avatar;
+        avatarChangeModal.close();
+      })
+      .catch((err) => {
+        console.error("Error updating avatar:", err);
+      });
+  } else {
+    console.error("Avatar URL is not defined");
+  }
+
+  submitButtonSelector.textContent = "Saving";
 }
 
+// Event Listener for opening avatar modal
 avatarImage.addEventListener("click", () => {
   submitButtonSelector.textContent = "Save";
   avatarChangeModal.open();
   avatarFormValidator.toggleButtonState();
 });
+console.log("User object:", user);
+// function handleAvatarChangeSubmit(inputValues) {
+//   console.log(Url.avatar);
+//   api.updateAvatar(Url.avatar).then((res) => {
+//     console.log(res);
+//   });
+//   user.setAvatarPic(Url.avatar);
+//   submitButton.textContent = "Saving";
+//   avatarChangeModal.close();
+// }
+
+// avatarImage.addEventListener("click", () => {
+//   submitButtonSelector.textContent = "Save";
+//   avatarChangeModal.open();
+//   avatarFormValidator.toggleButtonState();
+// });
 
 // ----------------------------
 

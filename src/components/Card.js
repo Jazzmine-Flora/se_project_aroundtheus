@@ -51,6 +51,20 @@ export default class Card {
     this._cardElement = null;
   }
 
+  // _handleDeleteClick(cardId) {
+  //   this._deleteButton.disabled = true;
+  //   this._deleteButton.textContent = "Deleting...";
+  //   this._api
+  //     .deleteCard(cardId)
+  //     .then(() => {
+  //       this.domDeleteCard();
+  //     })
+  //     .catch(() => {
+  //       this._deleteButton.disabled = false;
+  //       this._deleteButton.textContent = "Delete";
+  //     });
+  // }
+
   _getTemplate() {
     console.log("Template selector:", this._cardSelector); // Added log
     const templateElement = document.querySelector(this._cardSelector);
