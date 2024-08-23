@@ -23,6 +23,7 @@ import {
   profileTitle,
   profileDescription,
   profileEditForm,
+  userInfo,
 } from "../utils/constants.js";
 
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -36,10 +37,10 @@ const profileDescriptionInput = document.querySelector(
 );
 const cardListEl = document.querySelector(".cards__list");
 
-const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  jobSelector: ".profile__description",
-});
+// const userInfo = new UserInfo({
+//   nameSelector: ".profile__title",
+//   jobSelector: ".profile__description",
+// });
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -108,11 +109,7 @@ api
   });
 
 // avatar edit modal
-// const user = {
-//   setAvatarPic: function (avatarUrl) {
-//     document.querySelector(".profile__avatar").src = avatarUrl;
-//   },
-// };
+
 const avatarChangeModal = new PopupWithForm(
   "#avatar-modal",
   handleAvatarChangeSubmit
@@ -120,7 +117,6 @@ const avatarChangeModal = new PopupWithForm(
 avatarChangeModal.setEventListeners();
 
 function handleAvatarChangeSubmit(inputValues) {
-  // const user = userInfo.getUserInfo();
   const avatarUrl = inputValues.avatar;
   console.log("Avatar URL:", avatarUrl);
 
@@ -149,27 +145,11 @@ avatarImage.addEventListener("click", () => {
   avatarFormValidator.toggleButtonState();
 });
 console.log("User object:", user);
-// function handleAvatarChangeSubmit(inputValues) {
-//   console.log(Url.avatar);
-//   api.updateAvatar(Url.avatar).then((res) => {
-//     console.log(res);
-//   });
-//   user.setAvatarPic(Url.avatar);
-//   submitButton.textContent = "Saving";
-//   avatarChangeModal.close();
-// }
-
-// avatarImage.addEventListener("click", () => {
-//   submitButtonSelector.textContent = "Save";
-//   avatarChangeModal.open();
-//   avatarFormValidator.toggleButtonState();
-// });
 
 // ----------------------------
 
 // Delete card modal
 
-// Get the delete modal element
 const deleteModal = document.querySelector("#delete-modal");
 const deleteModalCloseButton = document.querySelector("#delete-close-modal");
 const deleteConfirmForm = document.querySelector("#delete-confirm-form");
@@ -210,15 +190,6 @@ deleteConfirmForm.addEventListener("submit", (event) => {
 function handleDeleteClick(card) {
   deleteConfirmModal.open(card);
 }
-
-// function handleDeleteClick(card) {
-//   // console.log(`Delete card with ID: ${card.id}`);
-//   api.deleteCard(card).then((message) => {
-//     console.log(message);
-//     // card.domDeleteCard();
-//     deleteModal.style.display = "none";
-//   });
-// }
 
 function handleCardDeleteSubmit(cardId) {
   api.deleteCard(cardId).then((message) => {

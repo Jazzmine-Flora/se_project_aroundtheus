@@ -102,13 +102,13 @@ export default class Api {
     }
   }
 
-  async updateAvatar(link) {
+  async updateAvatar(avatarUrl) {
     try {
       const res = await fetch(`${this._baseUrl}/users/me/avatar`, {
         method: "PATCH",
         headers: this._headers,
         body: JSON.stringify({
-          avatar: link,
+          avatar: avatarUrl,
         }),
       });
       return await res.json();
