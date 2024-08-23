@@ -191,10 +191,11 @@ function handleDeleteClick(card) {
   deleteConfirmModal.open(card);
 }
 
-function handleCardDeleteSubmit(cardId) {
-  api.deleteCard(cardId).then((message) => {
+function handleCardDeleteSubmit(card) {
+  api.deleteCard(card._id).then((message) => {
     console.log(message);
     deleteConfirmModal.close();
+    card.handleDeleteCard();
   });
 }
 
