@@ -207,10 +207,16 @@ const handleProfileFormSubmit = (formData) => {
 };
 
 const handleAddCardFormSubmit = (data) => {
-  renderCard({ name: data.title, link: data.url });
-  newCardForm.reset();
-  newCardPopup.close();
-  newCardFormValidator.toggleButtonState();
+  api.addCard(data).then((cardData) => {
+    renderCard(cardData);
+
+    newCardPopup.close();
+    newCardFormValidator.toggleButtonState();
+  });
+  // renderCard({ name: data.title, link: data.url });
+  // newCardForm.reset();
+  // newCardPopup.close();
+  // newCardFormValidator.toggleButtonState();
 };
 
 const editProfilePopup = new PopupWithForm(
