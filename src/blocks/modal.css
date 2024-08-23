@@ -33,8 +33,12 @@
   padding: 34px 36px 0 36px;
 }
 
+/* .modal__button_delete {
+  margin: auto;
+} */
+
 .modal__heading_delete {
-  margin-left: 36px;
+  /* margin-left: 36px; */
   margin-top: 34px;
   margin-bottom: 38px;
 }
@@ -135,8 +139,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 430px;
-  height: 182px;
+  width: 322px;
+  padding: 0 36px 36px;
 }
 
 .modal_container_preview {

@@ -157,7 +157,7 @@ const deleteConfirmModal = new ConfirmPopup(
   "#delete-modal",
   handleCardDeleteSubmit
 );
-deleteConfirmModal.setEventListeners();
+// deleteConfirmModal.setEventListeners();
 
 let cardToDelete = null;
 
