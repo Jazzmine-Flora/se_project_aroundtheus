@@ -108,7 +108,11 @@ api
   });
 
 // avatar edit modal
-
+// const user = {
+//   setAvatarPic: function (avatarUrl) {
+//     document.querySelector(".profile__avatar").src = avatarUrl;
+//   },
+// };
 const avatarChangeModal = new PopupWithForm(
   "#avatar-modal",
   handleAvatarChangeSubmit
@@ -116,7 +120,7 @@ const avatarChangeModal = new PopupWithForm(
 avatarChangeModal.setEventListeners();
 
 function handleAvatarChangeSubmit(inputValues) {
-  const user = userInfo.getUserInfo();
+  // const user = userInfo.getUserInfo();
   const avatarUrl = inputValues.avatar;
   console.log("Avatar URL:", avatarUrl);
 
@@ -125,7 +129,7 @@ function handleAvatarChangeSubmit(inputValues) {
       .updateAvatar(avatarUrl)
       .then((updatedUser) => {
         console.log("Updated user:", updatedUser);
-        user.avatar = updatedUser.avatar;
+        userInfo.setUserInfo(updatedUser);
         avatarChangeModal.close();
       })
       .catch((err) => {
