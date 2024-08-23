@@ -45,12 +45,12 @@ export default class Api {
     }
   }
 
-  async addCard(name, link) {
+  async addCard({ title, url }) {
     try {
       const res = await fetch(`${this._baseUrl}/cards`, {
         method: "POST",
         headers: this._headers,
-        body: JSON.stringify({ name, link }),
+        body: JSON.stringify({ name: title, link: url }),
       });
       return await res.json();
     } catch (err) {

@@ -157,7 +157,7 @@ const deleteConfirmModal = new ConfirmPopup(
   "#delete-modal",
   handleCardDeleteSubmit
 );
-// deleteConfirmModal.setEventListeners();
+deleteConfirmModal.setEventListeners();
 
 let cardToDelete = null;
 
@@ -200,23 +200,49 @@ function handleCardDeleteSubmit(cardId) {
 
 // ----------------------------
 
+// like button
+
+function handleLikeClick(card) {
+  if (card.isLiked()) {
+    api
+      .deleteLike(card._data.id)
+      .then((updatedCard) => {
+        card.updateLike(updatedCard.likes);
+      })
+      .catch((err) => console.log(err));
+  } else {
+    api
+      .addLike(card._data.id)
+      .then((updatedCard) => {
+        card.updateLike(updatedCard.likes);
+      })
+      .catch((err) => console.log(err));
+  }
+}
+
+// ----------------------------
+
 const handleProfileFormSubmit = (formData) => {
   userInfo.setUserInfo({ name: formData.title, job: formData.description });
   profileForm.reset();
   editProfilePopup.close();
+
+  submitButtonSelector.textContent = "Saving...";
+
+  api.setUserInfo(formData).then((data) => {
+    console.log(data);
+  });
+
+  submitButtonSelector.textContent = "Save";
 };
 
 const handleAddCardFormSubmit = (data) => {
   api.addCard(data).then((cardData) => {
-    renderCard(cardData);
+    renderCard({ name: data.title, link: data.url });
 
     newCardPopup.close();
     newCardFormValidator.toggleButtonState();
   });
-  // renderCard({ name: data.title, link: data.url });
-  // newCardForm.reset();
-  // newCardPopup.close();
-  // newCardFormValidator.toggleButtonState();
 };
 
 const editProfilePopup = new PopupWithForm(
