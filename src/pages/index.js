@@ -65,21 +65,21 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     console.log(err);
   });
 
-api
-  .getInitialCards()
-  .then((cardData) => {
-    if (cardData) {
-      section = new Section(
-        {
-          items: cardData,
-          renderer: renderCard,
-        },
-        cardListEl
-      );
-      section.renderItems();
-    }
-  })
-  .catch((err) => console.log("Error loading cards:", err));
+// api
+//   .getInitialCards()
+//   .then((cardData) => {
+//     if (cardData) {
+//       section = new Section(
+//         {
+//           items: cardData,
+//           renderer: renderCard,
+//         },
+//         cardListEl
+//       );
+//       section.renderItems();
+//     }
+//   })
+//   .catch((err) => console.log("Error loading cards:", err));
 
 let user;
 
@@ -204,6 +204,10 @@ function handleDeleteClick(card) {
 const deleteSubmitButton = deleteConfirmForm.querySelector(
   "button[type='submit']"
 );
+// function handleDeleteCard() {
+//   this._cardElement.remove();
+//   this._cardElement = null;
+// }
 
 function handleCardDeleteSubmit(card) {
   deleteSubmitButton.textContent = "Saving...";
@@ -249,23 +253,23 @@ function findCardById(cardId) {
   return initialCards.find((card) => card._id === cardId || card.id === cardId);
 }
 function handleLikeClick(cardData) {
-  const _likeButton = document.querySelector(".card__button-like");
-  const cardId = _likeButton.dataset.cardId;
+  // const _likeButton = document.querySelector(".card__button-like");
+  // const cardId = _likeButton.dataset.cardId;
 
-  if (cardData.isLiked) {
+  if (cardData._isLiked) {
     api
-      .removeLike(cardId)
+      .removeLike(cardData._id)
       .then((updatedCard) => {
-        cardData.isLiked = false; // Update local like status
-        updateCardLikes(cardId, updatedCard.likes); // Update UI with new like count
+        cardData._isLiked = false; // Update local like status
+        updateCardLikes(cardData._id, updatedCard.likes); // Update UI with new like count
       })
       .catch((err) => console.log(err));
   } else {
     api
-      .addLike(cardId)
+      .addLike(cardData._id)
       .then((updatedCard) => {
         cardData.isLiked = true; // Update local like status
-        updateCardLikes(cardId, updatedCard.likes); // Update UI with new like count
+        updateCardLikes(cardData._id, updatedCard.likes); // Update UI with new like count
       })
       .catch((err) => console.log(err));
   }
