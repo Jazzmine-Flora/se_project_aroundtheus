@@ -7,6 +7,7 @@ export default class Card {
     this._cardElement = this._getTemplate();
     this._handleDeleteClick = handleDeleteClick;
     this._id = data._id;
+    this._likes = data.likes;
     this._likeButton = this._cardElement.querySelector(".card__button-like");
     this._deleteButton = this._cardElement.querySelector(
       ".card__delete-button"
@@ -42,6 +43,15 @@ export default class Card {
     this._cardElement.querySelector(".card__text").textContent = this._name;
     this._cardImageEl.src = this._link;
     this._cardImageEl.alt = this._name;
+
+    // const likeCountElement =
+    //   this._cardElement.querySelector(".card__like-count");
+    // // likeCountElement.textContent = this._likes.length;
+    // if (this._likes.some((user) => user._id === currentUserId)) {
+    //   this._likeButton.classList.add("card__button-like_active");
+    // } else {
+    //   this._likeButton.classList.remove("card__button-like_active");
+    // }
 
     return this._cardElement;
   }

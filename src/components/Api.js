@@ -11,6 +11,9 @@ export default class Api {
         method: "GET",
         headers: this._headers,
       });
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
       return await res.json();
     } catch (err) {
       console.log(err);
@@ -95,10 +98,14 @@ export default class Api {
 
   async addLike(cardId) {
     try {
+      console.log("Adding like to card ID:", cardId);
       const res = await fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
         method: "PUT",
         headers: this._headers,
       });
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
       return await res.json();
     } catch (err) {
       console.log(err);
@@ -107,10 +114,14 @@ export default class Api {
 
   async removeLike(cardId) {
     try {
+      console.log("Removing like from card ID:", cardId);
       const res = await fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
         method: "DELETE",
         headers: this._headers,
       });
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
       return await res.json();
     } catch (err) {
       console.log(err);
