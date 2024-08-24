@@ -103,11 +103,14 @@ avatarChangeModal.setEventListeners();
 // ---------------------------------------
 const avatarSubmitButton = document.querySelector("#avatar-submit-button");
 
-function handleAvatarChangeSubmit(event) {
-  event.preventDefault();
+function handleAvatarChangeSubmit(inputValues) {
+  // event.preventDefault();
   avatarSubmitButton.textContent = "Saving...";
 
-  const avatarUrl = event.target.avatar.value;
+  // const avatarForm = event.currentTarget;
+  const avatarUrl = inputValues.avatar;
+  console.log("avatarUrl:", avatarUrl);
+  // const avatarUrl = event.target.avatar.value;
 
   if (avatarUrl) {
     api
@@ -126,9 +129,23 @@ function handleAvatarChangeSubmit(event) {
   }
 }
 
-document
-  .querySelector("#avatar-form")
-  .addEventListener("submit", handleAvatarChangeSubmit);
+const avatarFormElement = document.querySelector("#avatar-form");
+if (avatarFormElement) {
+  avatarFormElement.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const inputValues = new FormData(event.target);
+    handleAvatarChangeSubmit(Object.fromEntries(inputValues));
+  });
+}
+
+// const avatarFormElement = document.querySelector("#avatar-form");
+// if (avatarFormElement) {
+//   avatarFormElement.addEventListener("submit", handleAvatarChangeSubmit);
+// }
+
+// document
+//   .querySelector("#avatar-form")
+//   .addEventListener("submit", handleAvatarChangeSubmit);
 
 // Event Listener for opening avatar modal
 avatarImage.addEventListener("click", () => {
@@ -171,7 +188,7 @@ deleteModalCloseButton.addEventListener("click", () => {
 deleteConfirmForm.addEventListener("submit", (event) => {
   event.preventDefault();
   if (cardToDelete) {
-    const cardId = cardToDelete._data.id;
+    // const cardId = cardToDelete._data.id;
 
     handleDeleteClick(cardToDelete);
     deleteModal.style.display = "none";
@@ -181,17 +198,26 @@ deleteConfirmForm.addEventListener("submit", (event) => {
 
 function handleDeleteClick(card) {
   deleteConfirmModal.open(card);
-  cardToDelete = null;
+  cardToDelete = card;
 }
 
 const deleteSubmitButton = deleteConfirmForm.querySelector(
   "button[type='submit']"
 );
+
 function handleCardDeleteSubmit(card) {
   deleteSubmitButton.textContent = "Saving...";
+  const card_id = card._id;
+  console.log("Card ID:", card_id); // Debugging log
+
+  // if (!card_id) {
+  //   console.error("Card ID is missing");
+  //   deleteSubmitButton.textContent = "Yes"; // Reset button text
+  //   return;
+  // }
 
   api
-    .deleteCard(card._id)
+    .deleteCard(card_id)
     .then((message) => {
       console.log(message);
       deleteConfirmModal.close();
@@ -297,13 +323,22 @@ profileForm.addEventListener("submit", handleProfileFormSubmit);
 const addCardSubmitButton = document.querySelector("#add-card-submit-button");
 
 function handleAddCardFormSubmit(event) {
-  event.preventDefault();
+  // event.preventDefault();
   addCardSubmitButton.textContent = "Saving...";
 
+  const addCardForm = document.querySelector("#add-card-form");
+  const title = addCardForm.elements.title.value;
+  const url = addCardForm.elements.url.value;
+
   const cardData = {
-    title: event.target.title.value,
-    url: event.target.url.value,
+    title: title,
+    url: url,
   };
+
+  // const cardData = {
+  //   title: event.target.title.value,
+  //   url: event.target.url.value,
+  // };
 
   api
     .addCard(cardData)
@@ -317,9 +352,9 @@ function handleAddCardFormSubmit(event) {
     });
 }
 
-document
-  .querySelector("#add-card-form")
-  .addEventListener("submit", handleAddCardFormSubmit);
+// document
+//   .querySelector("#add-card-form")
+//   .addEventListener("submit", handleAddCardFormSubmit);
 
 // ----------------------------
 

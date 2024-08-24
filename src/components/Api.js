@@ -60,15 +60,38 @@ export default class Api {
 
   async deleteCard(cardId) {
     try {
+      // Debugging log
+      console.log("Delete Card ID:", cardId);
+      console.log("Delete Card URL:", `${this._baseUrl}/cards/${cardId}`);
+
       const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
         method: "DELETE",
         headers: this._headers,
       });
+
+      // Check response status and handle non-2xx statuses
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+
       return await res.json();
     } catch (err) {
-      console.log(err);
+      console.error("Error deleting card:", err);
+      throw err; // Rethrow the error after logging
     }
   }
+
+  // async deleteCard(cardId) {
+  //   try {
+  //     const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
+  //       method: "DELETE",
+  //       headers: this._headers,
+  //     });
+  //     return await res.json();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   async addLike(cardId) {
     try {
