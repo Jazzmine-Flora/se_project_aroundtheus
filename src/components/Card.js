@@ -45,36 +45,6 @@ export default class Card {
     this._likeButton.classList.toggle("card__button-like_active");
   }
 
-  // _handleLikeIcon() {
-  //   this._likeButton.classList.toggle("card__button-like_active");
-  // }
-
-  // function updateCardLikes(cardId, likes) {
-  //   const cardElement = document.querySelector(`.card[data-id="${cardId}"]`); // Make sure card elements have data-id attribute
-  //   const likeCountElement = cardElement.querySelector(".card__like-count");
-  //   likeCountElement.textContent = likes.length;
-
-  //   const likeButton = cardElement.querySelector(".card__button-like");
-  //   if (likes.some((user) => user._id === currentUser._id)) {
-  //     likeButton.classList.add("card__button-like_active");
-  //   } else {
-  //     likeButton.classList.remove("card__button-like_active");
-  //   }
-  // }
-
-  // // Attach event listeners to like buttons
-  // document.addEventListener("click", (event) => {
-  //   if (event.target.classList.contains("card__button-like")) {
-  //     const cardElement = event.target.closest(".card");
-  //     const cardId = cardElement.dataset.id;
-  //     const cardData = findCardById(cardId);
-  //     console.log("Like button clicked for card ID:", cardId); // Debugging log
-  //     console.log("Card data for like:", cardData);
-  //     // const cardData = findCardById(cardId); // Implement this function to find the card object
-  //     handleLikeClick(cardData);
-  //   }
-  // });
-
   getView() {
     this._setEventListeners();
     this._cardElement.querySelector(".card__text").textContent = this._name;
@@ -97,20 +67,6 @@ export default class Card {
     this._cardElement.remove();
     this._cardElement = null;
   }
-
-  // _handleDeleteClick(cardId) {
-  //   this._deleteButton.disabled = true;
-  //   this._deleteButton.textContent = "Deleting...";
-  //   this._api
-  //     .deleteCard(cardId)
-  //     .then(() => {
-  //       this.domDeleteCard();
-  //     })
-  //     .catch(() => {
-  //       this._deleteButton.disabled = false;
-  //       this._deleteButton.textContent = "Delete";
-  //     });
-  // }
 
   _getTemplate() {
     console.log("Template selector:", this._cardSelector); // Added log
