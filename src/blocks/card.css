@@ -69,6 +69,10 @@
   background: url("../images/activelike.svg") center no-repeat;
 }
 
+.card__like-count {
+  display: flex;
+}
+
 .card__delete-button {
   background: url("../images/Trash.svg");
   width: 18px;

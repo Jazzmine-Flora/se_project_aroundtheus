@@ -29,14 +29,14 @@ export default class Api {
     }
   }
 
-  async setUserInfo(name, about) {
+  async setUserInfo(data) {
     try {
       const res = await fetch(`${this._baseUrl}/users/me`, {
         method: "PATCH",
         headers: this._headers,
         body: JSON.stringify({
-          name: name,
-          about: about,
+          name: data.name,
+          about: data.about,
         }),
       });
       return await res.json();
