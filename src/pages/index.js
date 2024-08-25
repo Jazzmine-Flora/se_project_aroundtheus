@@ -232,7 +232,7 @@ function handleLikeClick(cardData) {
     api
       .removeLike(cardData._id)
       .then((updatedCard) => {
-        cardData.setIsLiked = false; // Update local like status
+        cardData.setLike = true; // Update local like status
         updateCardLikes(cardData._id, updatedCard.likes); // Update UI with new like count
         cardData.renderLikes();
       })
@@ -241,7 +241,7 @@ function handleLikeClick(cardData) {
     api
       .addLike(cardData._id)
       .then((updatedCard) => {
-        cardData.setIsLiked = true; // Update local like status
+        cardData.setLike = false; // Update local like status
         updateCardLikes(cardData._id, updatedCard.likes);
         cardData.renderLikes(); // Update UI with new like count
       })
