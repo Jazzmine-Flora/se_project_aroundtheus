@@ -207,7 +207,7 @@ function handleLikeClick(cardData) {
     api
       .removeLike(cardData._id)
       .then((updatedCard) => {
-        cardData.setLike = true; // Update local like status
+        cardData.setLike(true); // Update local like status
         // updateCardLikes(cardData._id, updatedCard.likes); // Update UI with new like count
         // cardData.renderLikes();
       })
@@ -216,7 +216,7 @@ function handleLikeClick(cardData) {
     api
       .addLike(cardData._id)
       .then((updatedCard) => {
-        cardData.setLike = false; // Update local like status
+        cardData.setLike(false); // Update local like status
         // updateCardLikes(cardData._id, updatedCard.likes);
         // cardData.renderLikes(); // Update UI with new like count
       })
@@ -248,18 +248,18 @@ function updateCardLikes(cardId, likes) {
 }
 
 // // // Attach event listeners to like buttons
-document.addEventListener("click", (event) => {
-  if (event.target.classList.contains(".card__button-like")) {
-    const cardElement = event.target.closest(".card");
-    const cardId = cardElement.dataset.id;
-    console.log("Like button clicked for card ID: ", cardId);
-    const cardData = findCardById(cardId);
-    console.log("Like button clicked for card ID:", cardId); // Debugging log
-    console.log("Card data for like:", cardData);
+// document.addEventListener("click", (event) => {
+//   if (event.target.classList.contains(".card__button-like")) {
+//     const cardElement = event.target.closest(".card");
+//     const cardId = cardElement.dataset.id;
+//     console.log("Like button clicked for card ID: ", cardId);
+//     const cardData = findCardById(cardId);
+//     console.log("Like button clicked for card ID:", cardId); // Debugging log
+//     console.log("Card data for like:", cardData);
 
-    handleLikeClick(cardData);
-  }
-});
+//     handleLikeClick(cardData);
+//   }
+// });
 
 // ----------------------------
 
