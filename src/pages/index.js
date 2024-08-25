@@ -146,8 +146,12 @@ deleteModalCloseButton.addEventListener("click", () => {
 
 deleteConfirmForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  // handleDeleteClick(cardToDelete);
+  // deleteModal.style.display = "none";
+  // cardToDelete = null;
   if (cardToDelete) {
-    // const cardId = cardToDelete._data.id;
+    // const cardId = cardToDelete;
+    // console.log("Card ID:", cardId);
 
     handleDeleteClick(cardToDelete);
     deleteModal.style.display = "none";
@@ -174,7 +178,7 @@ function handleCardDeleteSubmit(card) {
     .then((message) => {
       console.log(message);
       deleteConfirmModal.close();
-      card.handleDeleteCard(); // Assuming this method exists to remove the card from the DOM
+      card.handleDeleteClick(); // Assuming this method exists to remove the card from the DOM
       deleteSubmitButton.textContent = "Deleting...";
     })
     .catch((error) => {

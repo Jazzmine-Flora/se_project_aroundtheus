@@ -50,7 +50,7 @@ export default class Card {
     }
   }
 
-  handleDeleteCard() {
+  handleDeleteClick() {
     this._cardElement.remove();
     this._cardElement = null;
   }
@@ -69,10 +69,10 @@ export default class Card {
     return this._cardElement;
   }
 
-  domDeleteCard() {
-    this._cardElement.remove();
-    this._cardElement = null;
-  }
+  // domDeleteCard() {
+  //   this._cardElement.remove();
+  //   this._cardElement = null;
+  // }
 
   // generateCard() {
   //   this._cardElement = this._getTemplate();
@@ -91,6 +91,7 @@ export default class Card {
   _getTemplate() {
     console.log("Template selector:", this._cardSelector); // Added log
     const templateElement = document.querySelector(this._cardSelector);
+
     console.log("Template element:", templateElement); // Added log
 
     if (templateElement) {
