@@ -37,7 +37,7 @@ export default class Card {
   }
 
   // THE REST OF THE CARD CLASS
-  setLike(isLiked) {
+  setIsLiked(isLiked) {
     this._isLiked = isLiked;
     this.renderLikes();
   }
@@ -63,7 +63,7 @@ export default class Card {
     this._cardElement.querySelector(".card__text").textContent = this._name;
     this._cardImageEl.src = this._link;
     this._cardImageEl.alt = this._name;
-
+    this.renderLikes();
     // const likeCountElement =
     //   this._cardElement.querySelector(".card__like-count");
     // // likeCountElement.textContent = this._likes.length;
@@ -79,6 +79,20 @@ export default class Card {
   domDeleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
+  }
+
+  generateCard() {
+    this._cardElement = this._getTemplate();
+    this._cardElement.setAttribute("data-id", this._id); // Ensure data-id is set
+
+    this._cardElement.querySelector(".card__text").textContent = this._name;
+    const cardImage = this._element.querySelector(".card__image");
+    cardImage.src = this._link;
+    cardImage.alt = this._name;
+
+    this._setEventListeners();
+
+    return this._cardElement;
   }
 
   _getTemplate() {

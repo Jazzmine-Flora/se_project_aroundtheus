@@ -11,8 +11,7 @@ export default class Api {
         method: "GET",
         headers: this._headers,
       });
-      this.checkResponse(res);
-      return await res.json();
+      return await this.checkResponse(res);
     } catch (err) {
       console.log(err);
     }
@@ -24,8 +23,7 @@ export default class Api {
         method: "GET",
         headers: this._headers,
       });
-      this.checkResponse(res);
-      return await res.json();
+      return await this.checkResponse(res);
     } catch (err) {
       console.log(err);
     }
@@ -42,8 +40,7 @@ export default class Api {
         }),
       });
 
-      this.checkResponse(res);
-      return await res.json();
+      return await this.checkResponse(res);
     } catch (err) {
       console.log(err);
     }
@@ -57,8 +54,7 @@ export default class Api {
         body: JSON.stringify({ name: title, link: url }),
       });
 
-      this.checkResponse(res);
-      return await res.json();
+      return await this.checkResponse(res);
     } catch (err) {
       console.log(err);
     }
@@ -75,9 +71,7 @@ export default class Api {
         headers: this._headers,
       });
 
-      this.checkResponse(res);
-
-      return await res.json();
+      return await this.checkResponse(res);
     } catch (err) {
       console.error("Error deleting card:", err);
       throw err; // Rethrow the error after logging
@@ -98,13 +92,15 @@ export default class Api {
 
   async addLike(cardId) {
     try {
-      console.log("Adding like to card ID:", cardId);
+      console.log("Adding like to card ID:", cardId); // Check the card ID
       const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
         method: "PUT",
         headers: this._headers,
       });
-      this.checkResponse(res);
-      return await res.json();
+
+      const jsonRes = await this.checkResponse(res); // Parse the response
+      console.log("Response JSON", jsonRes);
+      return jsonRes;
     } catch (err) {
       console.log(err);
     }
@@ -112,17 +108,47 @@ export default class Api {
 
   async removeLike(cardId) {
     try {
-      console.log("Removing like from card ID:", cardId);
+      console.log("Removing like from card ID:", cardId); // Check the card ID
       const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
         method: "DELETE",
         headers: this._headers,
       });
-      this.checkResponse(res);
-      return await res.json();
+
+      const jsonRes = await this.checkResponse(res); // Parse the response
+      console.log("Response JSON", jsonRes);
+      return jsonRes;
     } catch (err) {
       console.log(err);
     }
   }
+
+  // async addLike(cardId) {
+  //   try {
+  //     console.log("Adding like to card ID:", cardId);
+  //     const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+  //       method: "PUT",
+  //       headers: this._headers,
+  //     });
+  //     this.checkResponse(res);
+  //     return await res.json();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+
+  // async removeLike(cardId) {
+  //   try {
+  //     console.log("Removing like from card ID:", cardId);
+  //     const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+  //       method: "DELETE",
+  //       headers: this._headers,
+  //     });
+  //     this.checkResponse(res);
+  //     return await res.json();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   changeLikeCardStatus(cardId, isLiked) {
     if (isLiked) {
@@ -132,10 +158,18 @@ export default class Api {
     }
   }
 
+  // async checkResponse(res) {
+  //   if (!res.ok) {
+  //     return Promise.reject(`Error: ${res.status}`);
+  //   }
+  //   return res.json();
+  // }
+
   async checkResponse(res) {
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${res.status}`);
     }
+    return await res.json();
   }
 
   async updateAvatar(avatarUrl) {
@@ -147,9 +181,7 @@ export default class Api {
           avatar: avatarUrl,
         }),
       });
-
-      this.checkResponse(res);
-      return await res.json();
+      return await this.checkResponse(res);
     } catch (err) {
       console.log(err);
     }

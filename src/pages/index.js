@@ -121,6 +121,7 @@ function handleAvatarChangeSubmit(inputValues) {
       .then((updatedUser) => {
         userInfo.setUserInfo(updatedUser);
         avatarChangeModal.close();
+        this._popupForm.reset();
       })
       .catch((err) => console.error("Error updating avatar:", err))
       .finally(() => {
@@ -128,22 +129,11 @@ function handleAvatarChangeSubmit(inputValues) {
       });
   } else {
     console.error("Avatar URL is not defined");
-    // avatarSubmitButton.textContent = "Save"; // Ensure the button text is reset
   }
 }
 
-// const avatarFormElement = document.querySelector("#avatar-form");
-// if (avatarFormElement) {
-//   avatarFormElement.addEventListener("submit", (event) => {
-//     event.preventDefault();
-//     const inputValues = new FormData(event.target);
-//     handleAvatarChangeSubmit(Object.fromEntries(inputValues));
-//   });
-// }
-
 // Event Listener for opening avatar modal
 avatarImage.addEventListener("click", () => {
-  // submitButtonSelector.textContent = "Save";
   avatarChangeModal.open();
   avatarFormValidator.toggleButtonState();
 });
@@ -200,7 +190,7 @@ const deleteSubmitButton = deleteConfirmForm.querySelector(
 );
 
 function handleCardDeleteSubmit(card) {
-  deleteSubmitButton.textContent = "Deleting...";
+  // deleteSubmitButton.textContent = "Deleting...";
   const card_id = card._id;
   console.log("Card ID:", card_id); // Debugging log
 
@@ -210,6 +200,7 @@ function handleCardDeleteSubmit(card) {
       console.log(message);
       deleteConfirmModal.close();
       card.handleDeleteCard(); // Assuming this method exists to remove the card from the DOM
+      deleteSubmitButton.textContent = "Deleting...";
     })
     .catch((error) => {
       console.error("Error deleting card:", error);
@@ -237,51 +228,63 @@ function findCardById(cardId) {
   return initialCards.find((card) => card._id === cardId || card.id === cardId);
 }
 function handleLikeClick(cardData) {
-  if (cardData._isLiked) {
+  if (cardData.setIsLiked) {
     api
       .removeLike(cardData._id)
       .then((updatedCard) => {
-        cardData.setLike = false; // Update local like status
-        // updateCardLikes(cardData._id, updatedCard.likes); // Update UI with new like count
+        cardData.setIsLiked = false; // Update local like status
+        updateCardLikes(cardData._id, updatedCard.likes); // Update UI with new like count
+        cardData.renderLikes();
       })
       .catch((err) => console.log(err));
   } else {
     api
       .addLike(cardData._id)
       .then((updatedCard) => {
-        cardData.setLike = true; // Update local like status
-        // updateCardLikes(cardData._id, updatedCard.likes); // Update UI with new like count
+        cardData.setIsLiked = true; // Update local like status
+        updateCardLikes(cardData._id, updatedCard.likes);
+        cardData.renderLikes(); // Update UI with new like count
       })
       .catch((err) => console.log(err));
   }
+  // cardData.renderLikes();
 }
 
 // Function to update card likes in the UI
-// function updateCardLikes(cardId, likes) {
-//   const cardElement = document.querySelector(`.card[data-id="${cardId}"]`); // Make sure card elements have data-id attribute
-//   const likeCountElement = cardElement.querySelector(".card__like-count");
-//   likeCountElement.textContent = likes.length;
+function updateCardLikes(cardId, likes) {
+  const cardElement = document.querySelector(`.card[data-id="${cardId}"]`); // Make sure card elements have data-id attribute
+  console.log("cardElement:", cardElement); // Log cardElement
 
-//   const likeButton = cardElement.querySelector(".card__button-like");
-//   if (likes.some((user) => user._id === currentUser._id)) {
-//     likeButton.classList.add("card__button-like_active");
-//   } else {
-//     likeButton.classList.remove("card__button-like_active");
-//   }
-// }
+  // Check if cardElement is found
+  if (cardElement === null) {
+    console.error(`Card element not found for id: ${cardId}`);
+    return;
+  }
+  const likeCountElement = cardElement.querySelector(".card__like-count");
 
-// // // // Attach event listeners to like buttons
-// document.addEventListener("click", (event) => {
-//   if (event.target.classList.contains("card__button-like")) {
-//     const cardElement = event.target.closest(".card");
-//     const cardId = cardElement.dataset.id;
-//     const cardData = findCardById(cardId);
-//     console.log("Like button clicked for card ID:", cardId); // Debugging log
-//     console.log("Card data for like:", cardData);
+  likeCountElement.textContent = likes.length;
 
-//     handleLikeClick(cardData);
-//   }
-// });
+  const likeButton = cardElement.querySelector(".card__button-like");
+  if (likes.some((user) => user._id === currentUser._id)) {
+    likeButton.classList.add("card__button-like_active");
+  } else {
+    likeButton.classList.remove("card__button-like_active");
+  }
+}
+
+// // // Attach event listeners to like buttons
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains(".card__button-like")) {
+    const cardElement = event.target.closest(".card");
+    const cardId = cardElement.dataset.id;
+    console.log("Like button clicked for card ID: ", cardId);
+    const cardData = findCardById(cardId);
+    console.log("Like button clicked for card ID:", cardId); // Debugging log
+    console.log("Card data for like:", cardData);
+
+    handleLikeClick(cardData);
+  }
+});
 
 // ----------------------------
 
@@ -303,6 +306,7 @@ function handleProfileFormSubmit(event) {
     .then((data) => {
       userInfo.setUserInfo({ name: data.name, job: data.about });
       editProfilePopup.close();
+      this._popupForm.reset();
     })
     .catch((error) => console.error("Error updating profile:", error))
     .finally(() => {
@@ -338,6 +342,7 @@ function handleAddCardFormSubmit(event) {
     .then((card) => {
       renderCard({ name: card.name, link: card.link });
       newCardPopup.close();
+      this._popupForm.reset();
     })
     .catch((error) => console.error("Error adding card:", error))
     .finally(() => {
