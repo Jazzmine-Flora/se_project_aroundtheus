@@ -99,7 +99,7 @@ export default class Api {
   async addLike(cardId) {
     try {
       console.log("Adding like to card ID:", cardId);
-      const res = await fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
         method: "PUT",
         headers: this._headers,
       });
@@ -115,7 +115,7 @@ export default class Api {
   async removeLike(cardId) {
     try {
       console.log("Removing like from card ID:", cardId);
-      const res = await fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
         method: "DELETE",
         headers: this._headers,
       });

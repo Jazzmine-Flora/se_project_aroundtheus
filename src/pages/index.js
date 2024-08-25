@@ -217,7 +217,7 @@ function handleCardDeleteSubmit(card) {
 }
 
 deleteConfirmForm.addEventListener("submit", (event) => {
-  event.preventDefault();
+  // event.preventDefault();
   if (cardToDelete) {
     handleCardDeleteSubmit(cardToDelete);
     deleteModal.style.display = "none";
@@ -238,16 +238,16 @@ function handleLikeClick(cardData) {
     api
       .removeLike(cardData._id)
       .then((updatedCard) => {
-        cardData._isLiked = false; // Update local like status
-        updateCardLikes(cardData._id, updatedCard.likes); // Update UI with new like count
+        cardData.setLike = false; // Update local like status
+        // updateCardLikes(cardData._id, updatedCard.likes); // Update UI with new like count
       })
       .catch((err) => console.log(err));
   } else {
     api
       .addLike(cardData._id)
       .then((updatedCard) => {
-        cardData.isLiked = true; // Update local like status
-        updateCardLikes(cardData._id, updatedCard.likes); // Update UI with new like count
+        cardData.setLike = true; // Update local like status
+        // updateCardLikes(cardData._id, updatedCard.likes); // Update UI with new like count
       })
       .catch((err) => console.log(err));
   }
@@ -267,7 +267,7 @@ function handleLikeClick(cardData) {
 //   }
 // }
 
-// // Attach event listeners to like buttons
+// // // // Attach event listeners to like buttons
 // document.addEventListener("click", (event) => {
 //   if (event.target.classList.contains("card__button-like")) {
 //     const cardElement = event.target.closest(".card");
@@ -275,7 +275,7 @@ function handleLikeClick(cardData) {
 //     const cardData = findCardById(cardId);
 //     console.log("Like button clicked for card ID:", cardId); // Debugging log
 //     console.log("Card data for like:", cardData);
-//     // const cardData = findCardById(cardId); // Implement this function to find the card object
+
 //     handleLikeClick(cardData);
 //   }
 // });
@@ -387,7 +387,8 @@ function createCard(cardData) {
     cardData,
     "#card-template",
     handleCardClick,
-    handleDeleteClick
+    handleDeleteClick,
+    handleLikeClick
   );
   return card.getView();
 }

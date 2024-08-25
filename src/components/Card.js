@@ -36,6 +36,19 @@ export default class Card {
     });
   }
 
+  // THE REST OF THE CARD CLASS
+  setLike(isLiked) {
+    this._isLiked = isLiked;
+    this.renderLikes();
+  }
+  renderLikes() {
+    if (this._isLiked) {
+      this._likeButton.classList.add("card__button-like_active");
+    } else {
+      this._likeButton.classList.remove("card__button-like_active");
+    }
+  }
+
   handleDeleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
