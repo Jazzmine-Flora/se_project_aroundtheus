@@ -15,7 +15,7 @@ import {
   avatarEditForm,
   profileFormValidator,
   newCardFormValidator,
-  avatarFormValidator,
+  // avatarFormValidator,
   validationConfig,
   profileAddButton,
   addCardModal,
@@ -26,10 +26,12 @@ import {
   userInfo,
 } from "../utils/constants.js";
 
+const avatarFormValidator = new FormValidator(validationConfig, avatarEditForm);
+avatarFormValidator.enableValidation();
+
 const profileEditButton = document.querySelector("#profile-edit-button");
 const avatarImage = document.querySelector(".edit_icon");
 const submitButtonSelector = document.querySelector(".modal__button");
-
 const addNewCardButton = document.querySelector(".profile__add-button");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
@@ -83,14 +85,14 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 
 let user;
 
-api
-  .getUserInfo()
-  .then((userData) => {
-    userInfo.setUserInfo(userData);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// api
+//   .getUserInfo()
+//   .then((userData) => {
+//     userInfo.setUserInfo(userData);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 // avatar edit modal
 
@@ -105,7 +107,6 @@ const avatarSubmitButton = document.querySelector("#avatar-submit-button");
 
 function handleAvatarChangeSubmit(inputValues) {
   // event.preventDefault();
-  avatarSubmitButton.textContent = "Saving...";
 
   // const avatarForm = event.currentTarget;
   const avatarUrl = inputValues.avatar;
@@ -113,7 +114,9 @@ function handleAvatarChangeSubmit(inputValues) {
   // const avatarUrl = event.target.avatar.value;
 
   if (avatarUrl) {
+    avatarSubmitButton.textContent = "Saving...";
     api
+
       .updateAvatar(avatarUrl)
       .then((updatedUser) => {
         userInfo.setUserInfo(updatedUser);
@@ -125,22 +128,22 @@ function handleAvatarChangeSubmit(inputValues) {
       });
   } else {
     console.error("Avatar URL is not defined");
-    avatarSubmitButton.textContent = "Save"; // Ensure the button text is reset
+    // avatarSubmitButton.textContent = "Save"; // Ensure the button text is reset
   }
 }
 
-const avatarFormElement = document.querySelector("#avatar-form");
-if (avatarFormElement) {
-  avatarFormElement.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const inputValues = new FormData(event.target);
-    handleAvatarChangeSubmit(Object.fromEntries(inputValues));
-  });
-}
+// const avatarFormElement = document.querySelector("#avatar-form");
+// if (avatarFormElement) {
+//   avatarFormElement.addEventListener("submit", (event) => {
+//     event.preventDefault();
+//     const inputValues = new FormData(event.target);
+//     handleAvatarChangeSubmit(Object.fromEntries(inputValues));
+//   });
+// }
 
 // Event Listener for opening avatar modal
 avatarImage.addEventListener("click", () => {
-  submitButtonSelector.textContent = "Save";
+  // submitButtonSelector.textContent = "Save";
   avatarChangeModal.open();
   avatarFormValidator.toggleButtonState();
 });
@@ -197,7 +200,7 @@ const deleteSubmitButton = deleteConfirmForm.querySelector(
 );
 
 function handleCardDeleteSubmit(card) {
-  deleteSubmitButton.textContent = "Saving...";
+  deleteSubmitButton.textContent = "Deleting...";
   const card_id = card._id;
   console.log("Card ID:", card_id); // Debugging log
 
@@ -216,14 +219,14 @@ function handleCardDeleteSubmit(card) {
     });
 }
 
-deleteConfirmForm.addEventListener("submit", (event) => {
-  // event.preventDefault();
-  if (cardToDelete) {
-    handleCardDeleteSubmit(cardToDelete);
-    deleteModal.style.display = "none";
-    cardToDelete = null;
-  }
-});
+// deleteConfirmForm.addEventListener("submit", (event) => {
+//   // event.preventDefault();
+//   if (cardToDelete) {
+//     handleCardDeleteSubmit(cardToDelete);
+//     deleteModal.style.display = "none";
+//     cardToDelete = null;
+//   }
+// });
 
 // ----------------------------
 
@@ -307,7 +310,7 @@ function handleProfileFormSubmit(event) {
     });
 }
 
-profileForm.addEventListener("submit", handleProfileFormSubmit);
+// profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 // ----------------------------
 const addCardSubmitButton = document.querySelector("#add-card-submit-button");
@@ -430,7 +433,7 @@ async function getUserInfo() {
     const data = await response.json();
     console.log(data);
 
-    // Update HTML elements based on the received data
+    //     // Update HTML elements based on the received data
     document.querySelector(".name").textContent = data.name;
     document.querySelector(".about").textContent = data.about;
     document.querySelector(".avatar").src = data.avatar;

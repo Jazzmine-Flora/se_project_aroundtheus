@@ -11,9 +11,7 @@ export default class Api {
         method: "GET",
         headers: this._headers,
       });
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
+      this.checkResponse(res);
       return await res.json();
     } catch (err) {
       console.log(err);
@@ -26,6 +24,7 @@ export default class Api {
         method: "GET",
         headers: this._headers,
       });
+      this.checkResponse(res);
       return await res.json();
     } catch (err) {
       console.log(err);
@@ -42,6 +41,8 @@ export default class Api {
           about: data.about,
         }),
       });
+
+      this.checkResponse(res);
       return await res.json();
     } catch (err) {
       console.log(err);
@@ -55,6 +56,8 @@ export default class Api {
         headers: this._headers,
         body: JSON.stringify({ name: title, link: url }),
       });
+
+      this.checkResponse(res);
       return await res.json();
     } catch (err) {
       console.log(err);
@@ -72,10 +75,7 @@ export default class Api {
         headers: this._headers,
       });
 
-      // Check response status and handle non-2xx statuses
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
+      this.checkResponse(res);
 
       return await res.json();
     } catch (err) {
@@ -103,9 +103,7 @@ export default class Api {
         method: "PUT",
         headers: this._headers,
       });
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
+      this.checkResponse(res);
       return await res.json();
     } catch (err) {
       console.log(err);
@@ -119,9 +117,7 @@ export default class Api {
         method: "DELETE",
         headers: this._headers,
       });
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
+      this.checkResponse(res);
       return await res.json();
     } catch (err) {
       console.log(err);
@@ -136,6 +132,12 @@ export default class Api {
     }
   }
 
+  async checkResponse(res) {
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+  }
+
   async updateAvatar(avatarUrl) {
     try {
       const res = await fetch(`${this._baseUrl}/users/me/avatar`, {
@@ -145,6 +147,8 @@ export default class Api {
           avatar: avatarUrl,
         }),
       });
+
+      this.checkResponse(res);
       return await res.json();
     } catch (err) {
       console.log(err);

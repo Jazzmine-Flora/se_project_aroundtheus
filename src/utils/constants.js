@@ -28,14 +28,14 @@ export const newCardFormValidator = new FormValidator(
   newCardForm
 );
 
-export const avatarFormValidator = new FormValidator(
-  validationConfig,
-  avatarEditForm
-);
+// export const avatarFormValidator = new FormValidator(
+//   validationConfig,
+//   avatarEditForm
+// );
 // Enable validation for both forms
 profileFormValidator.enableValidation();
 newCardFormValidator.enableValidation();
-avatarFormValidator.enableValidation();
+// avatarFormValidator.enableValidation();
 
 export const profileEditButton = document.querySelector("#profile-edit-button");
 //
