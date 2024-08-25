@@ -74,19 +74,19 @@ export default class Card {
     this._cardElement = null;
   }
 
-  generateCard() {
-    this._cardElement = this._getTemplate();
-    this._cardElement.setAttribute("data-id", this._id); // Ensure data-id is set
+  // generateCard() {
+  //   this._cardElement = this._getTemplate();
+  //   this._cardElement.setAttribute("data-id", this._id); // Ensure data-id is set
 
-    this._cardElement.querySelector(".card__text").textContent = this._name;
-    const cardImage = this._element.querySelector(".card__image");
-    cardImage.src = this._link;
-    cardImage.alt = this._name;
+  //   this._cardElement.querySelector(".card__text").textContent = this._name;
+  //   const cardImage = this._element.querySelector(".card__image");
+  //   cardImage.src = this._link;
+  //   cardImage.alt = this._name;
 
-    this._setEventListeners();
+  //   this._setEventListeners();
 
-    return this._cardElement;
-  }
+  //   return this._cardElement;
+  // }
 
   _getTemplate() {
     console.log("Template selector:", this._cardSelector); // Added log

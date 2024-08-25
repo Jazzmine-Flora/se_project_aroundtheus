@@ -67,32 +67,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     console.log(err);
   });
 
-// api
-//   .getInitialCards()
-//   .then((cardData) => {
-//     if (cardData) {
-//       section = new Section(
-//         {
-//           items: cardData,
-//           renderer: renderCard,
-//         },
-//         cardListEl
-//       );
-//       section.renderItems();
-//     }
-//   })
-//   .catch((err) => console.log("Error loading cards:", err));
-
 let user;
-
-// api
-//   .getUserInfo()
-//   .then((userData) => {
-//     userInfo.setUserInfo(userData);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
 
 // avatar edit modal
 
@@ -228,13 +203,13 @@ function findCardById(cardId) {
   return initialCards.find((card) => card._id === cardId || card.id === cardId);
 }
 function handleLikeClick(cardData) {
-  if (cardData.setIsLiked) {
+  if (cardData._isLiked) {
     api
       .removeLike(cardData._id)
       .then((updatedCard) => {
         cardData.setLike = true; // Update local like status
-        updateCardLikes(cardData._id, updatedCard.likes); // Update UI with new like count
-        cardData.renderLikes();
+        // updateCardLikes(cardData._id, updatedCard.likes); // Update UI with new like count
+        // cardData.renderLikes();
       })
       .catch((err) => console.log(err));
   } else {
@@ -242,8 +217,8 @@ function handleLikeClick(cardData) {
       .addLike(cardData._id)
       .then((updatedCard) => {
         cardData.setLike = false; // Update local like status
-        updateCardLikes(cardData._id, updatedCard.likes);
-        cardData.renderLikes(); // Update UI with new like count
+        // updateCardLikes(cardData._id, updatedCard.likes);
+        // cardData.renderLikes(); // Update UI with new like count
       })
       .catch((err) => console.log(err));
   }
