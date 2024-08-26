@@ -129,6 +129,8 @@ deleteConfirmModal.setEventListeners();
 
 let cardToDelete = null;
 
+// ----------------------------
+
 // Add event listeners to open the modal when delete button is clicked
 
 function handleDeleteClick(card) {
@@ -291,7 +293,7 @@ function handleAddCardFormSubmit(event) {
   api
     .addCard(cardData)
     .then((card) => {
-      renderCard({ name: card.name, link: card.link });
+      renderCard(card);
       newCardPopup.close();
       this._popupForm.reset();
     })
