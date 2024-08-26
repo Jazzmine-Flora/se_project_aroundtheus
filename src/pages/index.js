@@ -143,7 +143,7 @@ const deleteSubmitButton = deleteConfirmForm.querySelector(
 );
 
 function handleCardDeleteSubmit(card) {
-  // deleteSubmitButton.textContent = "Deleting...";
+  deleteSubmitButton.textContent = "Deleting...";
   const card_id = card._id;
   console.log("Card ID:", card_id); // Debugging log
 
@@ -153,7 +153,6 @@ function handleCardDeleteSubmit(card) {
       console.log(message);
       deleteConfirmModal.close();
       card.handleDeleteClick(); // Assuming this method exists to remove the card from the DOM
-      deleteSubmitButton.textContent = "Deleting...";
     })
     .catch((error) => {
       console.error("Error deleting card:", error);
@@ -162,15 +161,6 @@ function handleCardDeleteSubmit(card) {
       deleteSubmitButton.textContent = "Yes"; // Reset button text after completion
     });
 }
-
-// deleteConfirmForm.addEventListener("submit", (event) => {
-//   // event.preventDefault();
-//   if (cardToDelete) {
-//     handleCardDeleteSubmit(cardToDelete);
-//     deleteModal.style.display = "none";
-//     cardToDelete = null;
-//   }
-// });
 
 // ----------------------------
 
@@ -186,8 +176,6 @@ function handleLikeClick(cardData) {
       .removeLike(cardData._id)
       .then((updatedCard) => {
         cardData.setLike(false); // Update local like status
-        // updateCardLikes(cardData._id, updatedCard.likes); // Update UI with new like count
-        // cardData.renderLikes();
       })
       .catch((err) => console.log(err));
   } else {
@@ -195,8 +183,6 @@ function handleLikeClick(cardData) {
       .addLike(cardData._id)
       .then((updatedCard) => {
         cardData.setLike(true); // Update local like status
-        // updateCardLikes(cardData._id, updatedCard.likes);
-        // cardData.renderLikes(); // Update UI with new like count
       })
       .catch((err) => console.log(err));
   }
@@ -224,20 +210,6 @@ function updateCardLikes(cardId, likes) {
     likeButton.classList.remove("card__button-like_active");
   }
 }
-
-// // // Attach event listeners to like buttons
-// document.addEventListener("click", (event) => {
-//   if (event.target.classList.contains(".card__button-like")) {
-//     const cardElement = event.target.closest(".card");
-//     const cardId = cardElement.dataset.id;
-//     console.log("Like button clicked for card ID: ", cardId);
-//     const cardData = findCardById(cardId);
-//     console.log("Like button clicked for card ID:", cardId); // Debugging log
-//     console.log("Card data for like:", cardData);
-
-//     handleLikeClick(cardData);
-//   }
-// });
 
 // ----------------------------
 
