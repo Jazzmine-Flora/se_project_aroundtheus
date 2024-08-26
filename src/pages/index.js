@@ -130,38 +130,10 @@ deleteConfirmModal.setEventListeners();
 let cardToDelete = null;
 
 // Add event listeners to open the modal when delete button is clicked
-document.querySelectorAll(".card__delete-button").forEach((button) => {
-  button.addEventListener("click", (event) => {
-    event.preventDefault();
-    deleteModal.style.display = "block";
-    cardToDelete = event.target.closest(".card");
-  });
-});
-
-// Add event listener to close the modal
-deleteModalCloseButton.addEventListener("click", () => {
-  deleteModal.style.display = "none";
-  cardToDelete = null;
-});
-
-deleteConfirmForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  // handleDeleteClick(cardToDelete);
-  // deleteModal.style.display = "none";
-  // cardToDelete = null;
-  if (cardToDelete) {
-    // const cardId = cardToDelete;
-    // console.log("Card ID:", cardId);
-
-    handleDeleteClick(cardToDelete);
-    deleteModal.style.display = "none";
-    cardToDelete = null;
-  }
-});
 
 function handleDeleteClick(card) {
   deleteConfirmModal.open(card);
-  cardToDelete = card;
+  // cardToDelete = card;
 }
 
 const deleteSubmitButton = deleteConfirmForm.querySelector(
@@ -211,7 +183,7 @@ function handleLikeClick(cardData) {
     api
       .removeLike(cardData._id)
       .then((updatedCard) => {
-        cardData.setLike(true); // Update local like status
+        cardData.setLike(false); // Update local like status
         // updateCardLikes(cardData._id, updatedCard.likes); // Update UI with new like count
         // cardData.renderLikes();
       })
@@ -220,7 +192,7 @@ function handleLikeClick(cardData) {
     api
       .addLike(cardData._id)
       .then((updatedCard) => {
-        cardData.setLike(false); // Update local like status
+        cardData.setLike(true); // Update local like status
         // updateCardLikes(cardData._id, updatedCard.likes);
         // cardData.renderLikes(); // Update UI with new like count
       })
