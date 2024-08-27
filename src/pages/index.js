@@ -215,7 +215,7 @@ function updateCardLikes(cardId, likes) {
 
 const profileSubmitButton = document.querySelector("#profile-submit-button");
 
-function handleProfileFormSubmit(event) {
+function handleProfileFormSubmit(data) {
   // event.preventDefault();
   profileSubmitButton.textContent = "Saving...";
 
@@ -244,7 +244,7 @@ function handleProfileFormSubmit(event) {
 // ----------------------------
 const addCardSubmitButton = document.querySelector("#add-card-submit-button");
 
-function handleAddCardFormSubmit(event) {
+function handleAddCardFormSubmit(data) {
   // event.preventDefault();
   addCardSubmitButton.textContent = "Saving...";
 
@@ -257,27 +257,19 @@ function handleAddCardFormSubmit(event) {
     url: url,
   };
 
-  // const cardData = {
-  //   title: event.target.title.value,
-  //   url: event.target.url.value,
-  // };
-
   api
     .addCard(cardData)
     .then((card) => {
       renderCard(card);
       newCardPopup.close();
       this._popupForm.reset();
+      newCardFormValidator.toggleButtonState();
     })
     .catch((error) => console.error("Error adding card:", error))
     .finally(() => {
       addCardSubmitButton.textContent = "Create";
     });
 }
-
-// document
-//   .querySelector("#add-card-form")
-//   .addEventListener("submit", handleAddCardFormSubmit);
 
 // ----------------------------
 
