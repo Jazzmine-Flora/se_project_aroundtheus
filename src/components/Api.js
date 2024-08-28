@@ -17,20 +17,7 @@ export default class Api {
       method: "GET",
       headers: this._headers,
     }).then(this.checkResponse);
-
-    // document.querySelector(".name").textContent = data.name;
-    // document.querySelector(".about").textContent = data.about;
-    // document.querySelector(".avatar").src = data.avatar;
   }
-
-  // getUserInfo();
-
-  // async getUserInfo() {
-  //   return fetch(`${this._baseUrl}/users/me`, {
-  //     method: "GET",
-  //     headers: this._headers,
-  //   }).then(this.checkResponse);
-  // }
 
   async setUserInfo(data) {
     return fetch(`${this._baseUrl}/users/me`, {

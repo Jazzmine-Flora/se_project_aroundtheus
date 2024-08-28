@@ -13,8 +13,8 @@ import {
   profileForm,
   newCardForm,
   avatarEditForm,
-  profileFormValidator,
-  newCardFormValidator,
+  // profileFormValidator,
+  // newCardFormValidator,
   // avatarFormValidator,
   validationConfig,
   profileAddButton,
@@ -28,6 +28,11 @@ import {
 
 const avatarFormValidator = new FormValidator(validationConfig, avatarEditForm);
 avatarFormValidator.enableValidation();
+const profileFormValidator = new FormValidator(validationConfig, profileForm);
+profileFormValidator.enableValidation();
+
+const newCardFormValidator = new FormValidator(validationConfig, newCardForm);
+newCardFormValidator.enableValidation();
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const avatarImage = document.querySelector(".edit_icon");
@@ -224,12 +229,17 @@ function handleProfileFormSubmit(data) {
   const formValues = {
     name: formData.get("title"),
     about: formData.get("description"),
+    avatar: formData.get("avatar"),
   };
 
   api
     .setUserInfo(formValues)
     .then((data) => {
-      userInfo.setUserInfo({ name: data.name, job: data.about });
+      userInfo.setUserInfo({
+        name: data.name,
+        job: data.about,
+        avatar: data.avatar,
+      });
       editProfilePopup.close();
       // this._popupForm.reset();
     })
@@ -238,7 +248,16 @@ function handleProfileFormSubmit(data) {
       profileSubmitButton.textContent = "Save";
     });
 }
+function updateProfileDescription(data) {
+  document.querySelector(".name").textContent = data.name;
+  document.querySelector(".about").textContent = data.about;
+  document.querySelector(".avatar").src = data.avatar;
+}
 
+// Fetch user info and update the DOM
+api.getUserInfo().then((data) => {
+  updateProfileDescription(data);
+});
 // ----------------------------
 const addCardSubmitButton = document.querySelector("#add-card-submit-button");
 
@@ -355,18 +374,13 @@ function handleCardClick(name, link) {
 // }
 
 // getUserInfo();
-function updateProfileDescription(data) {
-  document.querySelector(".name").textContent = data.name;
-  document.querySelector(".about").textContent = data.about;
-  document.querySelector(".avatar").src = data.avatar;
-}
+// function updateProfileDescription(data) {
+//   document.querySelector(".name").textContent = data.name;
+//   document.querySelector(".about").textContent = data.about;
+//   document.querySelector(".avatar").src = data.avatar;
+// }
 
-// Fetch user info and update the DOM
-api
-  .getUserInfo()
-  .then((data) => {
-    updateProfileDescription(data);
-  })
-  .catch((err) => {
-    console.error("Error fetching user info:", err);
-  });
+// // Fetch user info and update the DOM
+// api.getUserInfo().then((data) => {
+//   updateProfileDescription(data);
+// });
