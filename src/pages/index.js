@@ -355,3 +355,18 @@ function handleCardClick(name, link) {
 // }
 
 // getUserInfo();
+function updateProfileDescription(data) {
+  document.querySelector(".name").textContent = data.name;
+  document.querySelector(".about").textContent = data.about;
+  document.querySelector(".avatar").src = data.avatar;
+}
+
+// Fetch user info and update the DOM
+api
+  .getUserInfo()
+  .then((data) => {
+    updateProfileDescription(data);
+  })
+  .catch((err) => {
+    console.error("Error fetching user info:", err);
+  });
