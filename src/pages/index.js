@@ -96,7 +96,7 @@ function handleAvatarChangeSubmit(inputValues) {
       .then((updatedUser) => {
         userInfo.setUserInfo(updatedUser);
         avatarChangeModal.close();
-        this._popupForm.reset();
+        // this.popupForm.reset();
       })
       .catch((err) => console.error("Error updating avatar:", err))
       .finally(() => {
@@ -127,7 +127,7 @@ const deleteConfirmModal = new ConfirmPopup(
 );
 deleteConfirmModal.setEventListeners();
 
-let cardToDelete = null;
+// let cardToDelete = null;
 
 // ----------------------------
 
@@ -231,7 +231,7 @@ function handleProfileFormSubmit(data) {
     .then((data) => {
       userInfo.setUserInfo({ name: data.name, job: data.about });
       editProfilePopup.close();
-      this._popupForm.reset();
+      // this._popupForm.reset();
     })
     .catch((error) => console.error("Error updating profile:", error))
     .finally(() => {
@@ -239,30 +239,31 @@ function handleProfileFormSubmit(data) {
     });
 }
 
-// profileForm.addEventListener("submit", handleProfileFormSubmit);
-
 // ----------------------------
 const addCardSubmitButton = document.querySelector("#add-card-submit-button");
 
 function handleAddCardFormSubmit(data) {
-  // event.preventDefault();
   addCardSubmitButton.textContent = "Saving...";
-
-  const addCardForm = document.querySelector("#add-card-form");
-  const title = addCardForm.elements.title.value;
-  const url = addCardForm.elements.url.value;
-
-  const cardData = {
-    title: title,
-    url: url,
+  const inputValues = {
+    title: data.title,
+    url: data.url,
   };
 
+  const addCardForm = document.querySelector("#add-card-form");
+  const title = inputValues.title;
+  const url = inputValues.url;
+
+  // const cardData = {
+  //   title: title,
+  //   url: url,
+  // };
+
   api
-    .addCard(cardData)
+    .addCard(inputValues)
     .then((card) => {
       renderCard(card);
       newCardPopup.close();
-      this._popupForm.reset();
+      // this._popupForm.reset();
       newCardFormValidator.toggleButtonState();
     })
     .catch((error) => console.error("Error adding card:", error))
@@ -320,48 +321,37 @@ function createCard(cardData) {
 
 /*event listeners 1*/
 
-// const section = new Section(
-//   {
-//     items: initialCards,
-//     renderer: (cardData) => {
-//       renderCard(cardData);
-//     },
-//   },
-//   ".cards__list"
-// );
-// section.renderItems();
-
 function handleCardClick(name, link) {
   popupWithImage.open({ name, link });
 }
 
 // fetching user info
-async function getUserInfo() {
-  try {
-    const response = await fetch(
-      "https://around-api.en.tripleten-services.com/v1/users/me",
-      {
-        method: "GET",
-        headers: {
-          Authorization: "acb9f423-9227-4882-a1e0-a6492f6bb248",
-        },
-      }
-    );
+// async function getUserInfo() {
+//   try {
+//     const response = await fetch(
+//       "https://around-api.en.tripleten-services.com/v1/users/me",
+//       {
+//         method: "GET",
+//         headers: {
+//           Authorization: "acb9f423-9227-4882-a1e0-a6492f6bb248",
+//         },
+//       }
+//     );
 
-    if (!response.ok) {
-      throw new Error("Network response was not ok " + response.statusText);
-    }
+//     if (!response.ok) {
+//       throw new Error("Network response was not ok " + response.statusText);
+//     }
 
-    const data = await response.json();
-    console.log(data);
+//     const data = await response.json();
+//     console.log(data);
 
-    //     // Update HTML elements based on the received data
-    document.querySelector(".name").textContent = data.name;
-    document.querySelector(".about").textContent = data.about;
-    document.querySelector(".avatar").src = data.avatar;
-  } catch (error) {
-    console.error("There has been a problem with your fetch operation:", error);
-  }
-}
+//     //     // Update HTML elements based on the received data
+//     document.querySelector(".name").textContent = data.name;
+//     document.querySelector(".about").textContent = data.about;
+//     document.querySelector(".avatar").src = data.avatar;
+//   } catch (error) {
+//     console.error("There has been a problem with your fetch operation:", error);
+//   }
+// }
 
-getUserInfo();
+// getUserInfo();

@@ -8,10 +8,10 @@ export default class PopupWithForm extends Popup {
     this._inputList = this._popupForm.querySelectorAll(".modal__form-input");
   }
 
-  // close() {
-  //   super.close();
-  //   // this._popupForm.reset();
-  // }
+  close() {
+    super.close();
+    this._popupForm.reset();
+  }
 
   _getInputValues() {
     const inputValues = {};
@@ -32,9 +32,4 @@ export default class PopupWithForm extends Popup {
       // this.close();
     });
   }
-
-  // close() {
-  //   // this._popupForm.reset();
-  //   super.close();
-  // }
 }

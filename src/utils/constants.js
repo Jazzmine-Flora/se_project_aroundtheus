@@ -28,10 +28,6 @@ export const newCardFormValidator = new FormValidator(
   newCardForm
 );
 
-// export const avatarFormValidator = new FormValidator(
-//   validationConfig,
-//   avatarEditForm
-// );
 // Enable validation for both forms
 profileFormValidator.enableValidation();
 newCardFormValidator.enableValidation();
