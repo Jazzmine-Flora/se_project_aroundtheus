@@ -28,12 +28,6 @@ export const profileDescriptionInput = document.querySelector(
 );
 export const cardListEl = document.querySelector(".cards__list");
 
-export const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  jobSelector: ".profile__description",
-  avatarSelector: ".profile__image",
-});
-
 export const initialCards = [
   {
     name: "Yosemite Valley",

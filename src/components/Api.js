@@ -13,7 +13,7 @@ export default class Api {
   }
 
   async getUserInfo() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
     }).then(this.checkResponse);

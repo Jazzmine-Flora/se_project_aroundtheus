@@ -13,9 +13,6 @@ import {
   profileForm,
   newCardForm,
   avatarEditForm,
-  // profileFormValidator,
-  // newCardFormValidator,
-  // avatarFormValidator,
   validationConfig,
   profileAddButton,
   addCardModal,
@@ -23,8 +20,13 @@ import {
   profileTitle,
   profileDescription,
   profileEditForm,
-  userInfo,
 } from "../utils/constants.js";
+
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__description",
+  avatarSelector: ".profile__image",
+});
 
 const avatarFormValidator = new FormValidator(validationConfig, avatarEditForm);
 avatarFormValidator.enableValidation();
@@ -132,15 +134,12 @@ const deleteConfirmModal = new ConfirmPopup(
 );
 deleteConfirmModal.setEventListeners();
 
-// let cardToDelete = null;
-
 // ----------------------------
 
 // Add event listeners to open the modal when delete button is clicked
 
 function handleDeleteClick(card) {
   deleteConfirmModal.open(card);
-  // cardToDelete = card;
 }
 
 const deleteSubmitButton = deleteConfirmForm.querySelector(
@@ -191,15 +190,13 @@ function handleLikeClick(cardData) {
       })
       .catch((err) => console.log(err));
   }
-  // cardData.renderLikes();
 }
 
 // Function to update card likes in the UI
 function updateCardLikes(cardId, likes) {
-  const cardElement = document.querySelector(`.card[data-id="${cardId}"]`); // Make sure card elements have data-id attribute
+  const cardElement = document.querySelector(`.card[data-id="${cardId}"]`);
   console.log("cardElement:", cardElement); // Log cardElement
 
-  // Check if cardElement is found
   if (cardElement === null) {
     console.error(`Card element not found for id: ${cardId}`);
     return;
@@ -221,15 +218,17 @@ function updateCardLikes(cardId, likes) {
 const profileSubmitButton = document.querySelector("#profile-submit-button");
 
 function handleProfileFormSubmit(data) {
-  // event.preventDefault();
   profileSubmitButton.textContent = "Saving...";
 
   const formData = new FormData(profileForm);
 
   const formValues = {
-    name: formData.get("title"),
-    about: formData.get("description"),
-    avatar: formData.get("avatar"),
+    name: data.title,
+    about: data.description,
+    avatar: data.avatar,
+    // name: formData.get("title"),
+    // about: formData.get("description"),
+    // avatar: formData.get("avatar"),
   };
 
   api
@@ -237,27 +236,17 @@ function handleProfileFormSubmit(data) {
     .then((data) => {
       userInfo.setUserInfo({
         name: data.name,
-        job: data.about,
+        about: data.about,
         avatar: data.avatar,
       });
       editProfilePopup.close();
-      // this._popupForm.reset();
     })
     .catch((error) => console.error("Error updating profile:", error))
     .finally(() => {
       profileSubmitButton.textContent = "Save";
     });
 }
-function updateProfileDescription(data) {
-  document.querySelector(".name").textContent = data.name;
-  document.querySelector(".about").textContent = data.about;
-  document.querySelector(".avatar").src = data.avatar;
-}
 
-// Fetch user info and update the DOM
-api.getUserInfo().then((data) => {
-  updateProfileDescription(data);
-});
 // ----------------------------
 const addCardSubmitButton = document.querySelector("#add-card-submit-button");
 
@@ -343,44 +332,3 @@ function createCard(cardData) {
 function handleCardClick(name, link) {
   popupWithImage.open({ name, link });
 }
-
-// fetching user info
-// async function getUserInfo() {
-//   try {
-//     const response = await fetch(
-//       "https://around-api.en.tripleten-services.com/v1/users/me",
-//       {
-//         method: "GET",
-//         headers: {
-//           Authorization: "acb9f423-9227-4882-a1e0-a6492f6bb248",
-//         },
-//       }
-//     );
-
-//     if (!response.ok) {
-//       throw new Error("Network response was not ok " + response.statusText);
-//     }
-
-//     const data = await response.json();
-//     console.log(data);
-
-//     //     // Update HTML elements based on the received data
-//     document.querySelector(".name").textContent = data.name;
-//     document.querySelector(".about").textContent = data.about;
-//     document.querySelector(".avatar").src = data.avatar;
-//   } catch (error) {
-//     console.error("There has been a problem with your fetch operation:", error);
-//   }
-// }
-
-// getUserInfo();
-// function updateProfileDescription(data) {
-//   document.querySelector(".name").textContent = data.name;
-//   document.querySelector(".about").textContent = data.about;
-//   document.querySelector(".avatar").src = data.avatar;
-// }
-
-// // Fetch user info and update the DOM
-// api.getUserInfo().then((data) => {
-//   updateProfileDescription(data);
-// });
