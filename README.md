@@ -9,8 +9,8 @@ https://drive.google.com/file/d/1d_zQt1Uf6p3ZXmGjofrONyNQCoVUExSB/view?usp=shari
 
 **Things that i've learned**
 
-In this project i have learned how to fetch data from APIs. Which makes our site interesting and the users can interect with our sites.
-Send and recieve data.
+In this project i have learned how to fetch data from APIs. Which makes our site interesting and the users can interect with it.
+This makes it easier to send, recieve and update the information.
 i have also learned how elements are displayed correctly on popular screen sizes.
 I also learned grid functions and its properties and how flexbox and grid can be applied together where needed.
 However, i would still like to improve my understanding in how to use these and media screen properties.
