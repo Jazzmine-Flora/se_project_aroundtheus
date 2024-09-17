@@ -33,6 +33,16 @@
   padding: 34px 36px 0 36px;
 }
 
+/* .modal__button_delete {
+  margin: auto;
+} */
+
+.modal__heading_delete {
+  /* margin-left: 36px; */
+  margin-top: 34px;
+  margin-bottom: 38px;
+}
+
 /* .modal_form-input-container {
   position: relative;
   margin-bottom: 15px; /* Ensure consistent margin */
@@ -107,6 +117,31 @@
   width: 430px;
   height: 330px;
 }
+.modal__container_avatar {
+  max-width: 430px;
+  height: 272px;
+}
+
+.modal__button_text {
+  font-size: 18px;
+  line-height: 22.63px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.modal__container_delete {
+  background-color: white;
+  margin: auto;
+  border-radius: 10px;
+  color: black;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 322px;
+  padding: 0 36px 36px;
+}
 
 .modal_container_preview {
   border-radius: 8px;
@@ -127,6 +162,7 @@
   border: none;
   padding: 0;
   margin-top: 18px;
+  align-items: center;
 }
 
 .modal__button:hover {

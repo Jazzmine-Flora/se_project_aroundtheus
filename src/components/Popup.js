@@ -1,6 +1,9 @@
 export default class Popup {
   constructor({ popupSelector }) {
     this._popupElement = document.querySelector(popupSelector);
+    if (!this._popupElement) {
+      throw new Error(`Popup element not found: ${popupSelector}`);
+    }
     this._handleEscClose = this._handleEscClose.bind(this);
   }
 
@@ -29,8 +32,5 @@ export default class Popup {
         this.close();
       }
     });
-    // document.addEventListener("keydown", (evt) => {
-    //   this._handleEscClose(evt);
-    // });
   }
 }

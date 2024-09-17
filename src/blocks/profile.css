@@ -5,6 +5,27 @@
   margin-bottom: 51px;
 }
 
+.edit_icon {
+  background: transparent center no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+  margin-left: 45px;
+  margin-top: 10px;
+  cursor: pointer;
+  position: absolute;
+  opacity: 0;
+}
+
+.edit_icon:hover {
+  opacity: 10;
+  transition: 0.5s ease-in;
+}
+
 .profile__info {
   display: grid;
   grid-template-areas: "title button" "discription discription";

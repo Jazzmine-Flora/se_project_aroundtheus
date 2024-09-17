@@ -1,4 +1,4 @@
-import FormValidator from "../components/FormValidator.js";
+// import FormValidator from "../components/FormValidator.js";
 import UserInfo from "../components/UserInfo.js";
 
 export const profileForm = document.querySelector(
@@ -15,20 +15,8 @@ export const validationConfig = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
-
-// Create instances of FormValidator for each form
-export const profileFormValidator = new FormValidator(
-  validationConfig,
-  profileForm
-);
-export const newCardFormValidator = new FormValidator(
-  validationConfig,
-  newCardForm
-);
-
-// Enable validation for both forms
-profileFormValidator.enableValidation();
-newCardFormValidator.enableValidation();
+export const avatarEditModal = document.querySelector("#avatar-modal");
+export const avatarEditForm = avatarEditModal.querySelector("#avatar-form");
 
 export const profileEditButton = document.querySelector("#profile-edit-button");
 //
@@ -39,11 +27,6 @@ export const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 export const cardListEl = document.querySelector(".cards__list");
-
-export const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  jobSelector: ".profile__description",
-});
 
 export const initialCards = [
   {

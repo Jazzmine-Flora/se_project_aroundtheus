@@ -18,20 +18,29 @@
       </header>
 
       <main class="content">
+        
         <section class="profile page__section">
+          
           <img
             src="<%=require('./images/Avatar.svg')%>"
             alt="Avatar"
-            class="profile__image"
+            class="profile__image avatar"
           />
+          
+            <img
+            src="<%=require('./images/editpencil.svg')%>"
+            alt="Edit icon"
+            class="edit_icon avatar"
+          />
+          
           <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
+            <h1 class="profile__title name">Jacques Cousteau</h1>
             <button
               class="profile__edit-button"
               id="profile-edit-button"
               type="button"
             ></button>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__description about">Explorer</p>
           </div>
           <button class="profile__add-button" type="button"></button>
         </section>
@@ -49,7 +58,7 @@
       <div class="modal__container">
         <button class="modal__close" id="profile-close-button"></button>
         <p class="modal__heading">Edit Profile</p>
-        <form class="modal__form">
+        <form class="modal__form" id="profile-form">
           <div class="input-container">
             <input
               class="modal__form-input"
@@ -85,6 +94,7 @@
           </div>
           <!-- </label> -->
           <button
+            id="profile-submit-button"
             class="modal__button modal__button_disabled"
             disabled
             type="submit"
@@ -99,7 +109,7 @@
       <div class="modal__container">
         <button class="modal__close" id="card-close-button"></button>
         <p class="modal__heading">New Place</p>
-        <form class="modal__form">
+        <form class="modal__form" id="add-card-form">
           <!-- <label class="label__container"> -->
           <input
             class="modal__form-input modal__form-input_type_title"
@@ -130,6 +140,7 @@
           ></span>
           <!-- </label> -->
           <button
+            id="add-card-submit-button"
             class="button modal__button modal__button_disabled"
             disabled
             type="submit"
@@ -140,8 +151,43 @@
       </div>
     </div>
 
+    <div class="modal" id="delete-modal">
+      <div class="modal__container_delete">
+        <button class="modal__close" id="delete-close-modal"></button>
+        <h2 class="modal__heading_delete">Are you sure?</h2>
+        <form id="delete-confirm-form" action="post">
+          <button class="button modal__button modal__button_delete"
+           type="submit">Yes</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="avatar-modal">
+      <div class="modal__container modal__container_avatar">
+          <button class="modal__close" id="avatar-modal-close"></button>
+          <h2 class="modal__heading">Change Profile Picture</h2>
+          <form class="modal__form" id="avatar-form">
+            <input
+              type="url"
+              name="avatar"
+              class="modal__form-input"
+              placeholder="Image URL"
+              id="avatar-url-input"
+              required
+            />
+           
+            <span
+              class="error-message modal__form-error modal__form-error_visible"
+              id="avatar-url-input-error"
+            ></span>
+            <button class="modal__button modal__button_text modal__button_disabled" id="avatar-submit-button" type="submit" disabled>Save</button>
+          </form>
+      </div>
+    </div>
+  </div>
+
     <template id="card-template">
-      <li class="card">
+      <li class="card" data-id="{{cardId}}">
         <div class="card__image_container">
           <img src="" alt="" class="card__image" />
           <button class="card__delete-button" type="button"></button>
@@ -149,6 +195,7 @@
         <div class="card__description">
           <h2 class="card__text"></h2>
           <button class="card__button-like" type="button"></button>
+          <span class="card__like-count">0</span> 
         </div>
       </li>
     </template>
